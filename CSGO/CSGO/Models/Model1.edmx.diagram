@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a5348a88f45f42919ee15ca44ff16a93" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="CSGOModel.betting" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.evaluation" Width="1.5" PointX="18" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.eventt" Width="1.5" PointX="25.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.giveaway" Width="1.5" PointX="20.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.match" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.person" Width="1.5" PointX="13.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.place" Width="1.5" PointX="21" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.player" Width="1.5" PointX="13.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.program" Width="1.5" PointX="27.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.rating" Width="1.5" PointX="11.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.skin" Width="1.5" PointX="20.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.skins_in_giveaway" Width="1.5" PointX="22.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.team" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.ticket" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.tournament" Width="1.5" PointX="23.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.user" Width="1.5" PointX="15.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.users_bets" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSGOModel.users_in_giveaway" Width="1.5" PointX="18" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="CSGOModel.belongs8" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has11" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has16" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has32" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has26" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has29" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has7" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.submits" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has12" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has18" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has4" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has5" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has13" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has14" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has2" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has28" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has9" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.belongs3" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has10" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has15" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has22" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has25" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has33" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has6" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.plays" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.plays1" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.belongs" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.belongs1" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has31" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.votes" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.belongs5" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has23" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has17" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has27" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has24" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has1" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has3" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.bets" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has30" ManuallyRouted="false" />
+        <AssociationConnector Association="CSGOModel.has8" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

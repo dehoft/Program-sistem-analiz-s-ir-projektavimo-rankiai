@@ -1,0 +1,99 @@
+﻿@model IEnumerable<CSGO.Models.match>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.start_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.map)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.result)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_broadcasted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_registration_open)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.betting.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tournament.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ticket.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.place.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ticket1.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.team.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.team1.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.map)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.result)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_broadcasted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_registration_open)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.betting.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tournament.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ticket.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.place.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ticket1.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.team.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.team1.name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

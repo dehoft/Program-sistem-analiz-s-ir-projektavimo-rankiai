@@ -1,0 +1,958 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CSGOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="betting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="coefficient" Type="Double" Nullable="false" />
+    <Property Name="fk_users_bets" Type="Int32" Nullable="false" />
+    <Property Name="fk_match" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="users_bets" Relationship="Self.belongs8" FromRole="bettings" ToRole="users_bets" />
+    <NavigationProperty Name="match" Relationship="Self.has11" FromRole="bettings" ToRole="matches" />
+    <NavigationProperty Name="matches" Relationship="Self.has16" FromRole="bettings" ToRole="matches" />
+    <NavigationProperty Name="users_bets1" Relationship="Self.has32" FromRole="bettings" ToRole="users_bets" />
+  </EntityType>
+  <EntityType Name="evaluation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="score" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="timestamp" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_user" Type="Int32" Nullable="false" />
+    <Property Name="fk_tournament" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tournaments" Relationship="Self.has26" FromRole="evaluation" ToRole="tournaments" />
+    <NavigationProperty Name="users" Relationship="Self.has29" FromRole="evaluation" ToRole="users" />
+    <NavigationProperty Name="tournament" Relationship="Self.has7" FromRole="evaluation" ToRole="tournaments" />
+    <NavigationProperty Name="user" Relationship="Self.submits" FromRole="evaluation" ToRole="users" />
+  </EntityType>
+  <EntityType Name="eventt">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" />
+    <Property Name="finish_time" Type="DateTime" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fk_program" Type="Int32" />
+    <Property Name="fk_tournament" Type="Int32" />
+    <NavigationProperty Name="tournament" Relationship="Self.has12" FromRole="eventts" ToRole="tournaments" />
+    <NavigationProperty Name="programs" Relationship="Self.has18" FromRole="eventts" ToRole="programs" />
+    <NavigationProperty Name="program" Relationship="Self.has4" FromRole="eventts" ToRole="programs" />
+    <NavigationProperty Name="tournaments" Relationship="Self.has5" FromRole="eventts" ToRole="tournaments" />
+  </EntityType>
+  <EntityType Name="giveaway">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" />
+    <Property Name="fk_skinsInGiveaway" Type="Int32" />
+    <Property Name="fk_usersInGiveaway" Type="Int32" />
+    <NavigationProperty Name="skins_in_giveaway" Relationship="Self.has13" FromRole="giveaways" ToRole="skins_in_giveaway" />
+    <NavigationProperty Name="users_in_giveaway" Relationship="Self.has14" FromRole="giveaways" ToRole="users_in_giveaway" />
+    <NavigationProperty Name="skins_in_giveaway1" Relationship="Self.has2" FromRole="giveaways" ToRole="skins_in_giveaway" />
+    <NavigationProperty Name="users" Relationship="Self.has28" FromRole="giveaways" ToRole="users" />
+    <NavigationProperty Name="users_in_giveaway1" Relationship="Self.has9" FromRole="giveaways" ToRole="users_in_giveaway" />
+  </EntityType>
+  <EntityType Name="match">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" />
+    <Property Name="map" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="result" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="is_broadcasted" Type="Boolean" Nullable="false" />
+    <Property Name="is_registration_open" Type="Boolean" Nullable="false" />
+    <Property Name="fk_first_team" Type="Int32" />
+    <Property Name="fk_second_team" Type="Int32" />
+    <Property Name="fk_tournament" Type="Int32" />
+    <Property Name="fk_place" Type="Int32" />
+    <Property Name="fk_betting" Type="Int32" />
+    <Property Name="fk_ticket" Type="Int32" />
+    <NavigationProperty Name="bettings" Relationship="Self.has11" FromRole="matches" ToRole="bettings" />
+    <NavigationProperty Name="betting" Relationship="Self.has16" FromRole="matches" ToRole="bettings" />
+    <NavigationProperty Name="tournament" Relationship="Self.belongs3" FromRole="matches" ToRole="tournaments" />
+    <NavigationProperty Name="ticket" Relationship="Self.has10" FromRole="matches" ToRole="tickets" />
+    <NavigationProperty Name="place" Relationship="Self.has15" FromRole="matches" ToRole="place" />
+    <NavigationProperty Name="teams" Relationship="Self.has22" FromRole="matches" ToRole="teams" />
+    <NavigationProperty Name="tournaments" Relationship="Self.has25" FromRole="matches" ToRole="tournaments" />
+    <NavigationProperty Name="ticket1" Relationship="Self.has33" FromRole="matches" ToRole="tickets" />
+    <NavigationProperty Name="places" Relationship="Self.has6" FromRole="matches" ToRole="place" />
+    <NavigationProperty Name="team" Relationship="Self.plays" FromRole="matches" ToRole="teams" />
+    <NavigationProperty Name="team1" Relationship="Self.plays1" FromRole="matches" ToRole="teams" />
+  </EntityType>
+  <EntityType Name="person">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sex" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="Self.belongs" FromRole="persons" ToRole="users" />
+    <NavigationProperty Name="players" Relationship="Self.belongs1" FromRole="persons" ToRole="players" />
+  </EntityType>
+  <EntityType Name="place">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="index" Type="Int32" Nullable="false" />
+    <Property Name="fk_user" Type="Int32" Nullable="false" />
+    <Property Name="fk_match" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="matches" Relationship="Self.has15" FromRole="place" ToRole="matches" />
+    <NavigationProperty Name="match" Relationship="Self.has6" FromRole="place" ToRole="matches" />
+    <NavigationProperty Name="users" Relationship="Self.has31" FromRole="place" ToRole="users" />
+    <NavigationProperty Name="user" Relationship="Self.votes" FromRole="place" ToRole="users" />
+  </EntityType>
+  <EntityType Name="player">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rating" Type="Double" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="assists" Type="Int32" Nullable="false" />
+    <Property Name="headshots" Type="Int32" Nullable="false" />
+    <Property Name="damage_per_second" Type="Double" Nullable="false" />
+    <Property Name="fk_person" Type="Int32" />
+    <Property Name="fk_rating" Type="Int32" />
+    <Property Name="fk_team" Type="Int32" />
+    <NavigationProperty Name="person" Relationship="Self.belongs1" FromRole="players" ToRole="persons" />
+    <NavigationProperty Name="team" Relationship="Self.belongs5" FromRole="players" ToRole="teams" />
+    <NavigationProperty Name="rating1" Relationship="Self.has" FromRole="players" ToRole="ratings" />
+    <NavigationProperty Name="teams" Relationship="Self.has23" FromRole="players" ToRole="teams" />
+  </EntityType>
+  <EntityType Name="program">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fk_tournament" Type="Int32" />
+    <Property Name="fk_event" Type="Int32" />
+    <NavigationProperty Name="eventt" Relationship="Self.has18" FromRole="programs" ToRole="eventts" />
+    <NavigationProperty Name="eventts" Relationship="Self.has4" FromRole="programs" ToRole="eventts" />
+    <NavigationProperty Name="tournament" Relationship="Self.has17" FromRole="programs" ToRole="tournaments" />
+    <NavigationProperty Name="tournaments" Relationship="Self.has27" FromRole="programs" ToRole="tournaments" />
+  </EntityType>
+  <EntityType Name="rating">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="maps_played" Type="Int32" Nullable="false" />
+    <Property Name="round_number" Type="Int32" Nullable="false" />
+    <Property Name="total_kills" Type="Int32" Nullable="false" />
+    <Property Name="total_deaths" Type="Int32" Nullable="false" />
+    <Property Name="kd_ratio" Type="Double" Nullable="false" />
+    <Property Name="fk_team" Type="Int32" />
+    <Property Name="fk_player" Type="Int32" />
+    <NavigationProperty Name="players" Relationship="Self.has" FromRole="ratings" ToRole="players" />
+    <NavigationProperty Name="teams" Relationship="Self.has24" FromRole="ratings" ToRole="teams" />
+  </EntityType>
+  <EntityType Name="skin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fk_skinsInGiveaway" Type="Int32" />
+    <NavigationProperty Name="skins_in_giveaway" Relationship="Self.has1" FromRole="skins" ToRole="skins_in_giveaway" />
+  </EntityType>
+  <EntityType Name="skins_in_giveaway">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_skin" Type="Int32" Nullable="false" />
+    <Property Name="fk_giveaway" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="giveaways" Relationship="Self.has13" FromRole="skins_in_giveaway" ToRole="giveaways" />
+    <NavigationProperty Name="giveaway" Relationship="Self.has2" FromRole="skins_in_giveaway" ToRole="giveaways" />
+    <NavigationProperty Name="skin" Relationship="Self.has1" FromRole="skins_in_giveaway" ToRole="skins" />
+  </EntityType>
+  <EntityType Name="team">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="wins" Type="Int32" Nullable="false" />
+    <Property Name="defeats" Type="Int32" Nullable="false" />
+    <Property Name="fk_match" Type="Int32" />
+    <Property Name="fk_player" Type="Int32" />
+    <Property Name="fk_rating" Type="Int32" />
+    <NavigationProperty Name="match" Relationship="Self.has22" FromRole="teams" ToRole="matches" />
+    <NavigationProperty Name="matches" Relationship="Self.plays" FromRole="teams" ToRole="matches" />
+    <NavigationProperty Name="matches1" Relationship="Self.plays1" FromRole="teams" ToRole="matches" />
+    <NavigationProperty Name="players" Relationship="Self.belongs5" FromRole="teams" ToRole="players" />
+    <NavigationProperty Name="player" Relationship="Self.has23" FromRole="teams" ToRole="players" />
+    <NavigationProperty Name="rating" Relationship="Self.has24" FromRole="teams" ToRole="ratings" />
+  </EntityType>
+  <EntityType Name="ticket">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="matches" Relationship="Self.has10" FromRole="tickets" ToRole="matches" />
+    <NavigationProperty Name="matches1" Relationship="Self.has33" FromRole="tickets" ToRole="matches" />
+    <NavigationProperty Name="users" Relationship="Self.has3" FromRole="tickets" ToRole="users" />
+  </EntityType>
+  <EntityType Name="tournament">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fk_event" Type="Int32" />
+    <Property Name="fk_match" Type="Int32" />
+    <Property Name="fk_evaluation" Type="Int32" />
+    <Property Name="fk_program" Type="Int32" />
+    <NavigationProperty Name="evaluation" Relationship="Self.has26" FromRole="tournaments" ToRole="evaluation" />
+    <NavigationProperty Name="evaluations" Relationship="Self.has7" FromRole="tournaments" ToRole="evaluation" />
+    <NavigationProperty Name="eventts" Relationship="Self.has12" FromRole="tournaments" ToRole="eventts" />
+    <NavigationProperty Name="eventt" Relationship="Self.has5" FromRole="tournaments" ToRole="eventts" />
+    <NavigationProperty Name="matches" Relationship="Self.belongs3" FromRole="tournaments" ToRole="matches" />
+    <NavigationProperty Name="match" Relationship="Self.has25" FromRole="tournaments" ToRole="matches" />
+    <NavigationProperty Name="programs" Relationship="Self.has17" FromRole="tournaments" ToRole="programs" />
+    <NavigationProperty Name="program" Relationship="Self.has27" FromRole="tournaments" ToRole="programs" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_person" Type="Int32" Nullable="false" />
+    <Property Name="fk_ticket" Type="Int32" />
+    <Property Name="fk_users_bets" Type="Int32" />
+    <Property Name="fk_giveaway" Type="Int32" />
+    <Property Name="fk_evaluation" Type="Int32" />
+    <Property Name="fk_place" Type="Int32" />
+    <NavigationProperty Name="evaluation" Relationship="Self.has29" FromRole="users" ToRole="evaluation" />
+    <NavigationProperty Name="evaluations" Relationship="Self.submits" FromRole="users" ToRole="evaluation" />
+    <NavigationProperty Name="giveaway" Relationship="Self.has28" FromRole="users" ToRole="giveaways" />
+    <NavigationProperty Name="person" Relationship="Self.belongs" FromRole="users" ToRole="persons" />
+    <NavigationProperty Name="place" Relationship="Self.has31" FromRole="users" ToRole="place" />
+    <NavigationProperty Name="places" Relationship="Self.votes" FromRole="users" ToRole="place" />
+    <NavigationProperty Name="ticket" Relationship="Self.has3" FromRole="users" ToRole="tickets" />
+    <NavigationProperty Name="users_bets" Relationship="Self.bets" FromRole="users" ToRole="users_bets" />
+    <NavigationProperty Name="users_bets1" Relationship="Self.has30" FromRole="users" ToRole="users_bets" />
+    <NavigationProperty Name="users_in_giveaway" Relationship="Self.has8" FromRole="users" ToRole="users_in_giveaway" />
+  </EntityType>
+  <EntityType Name="users_bets">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bet_value" Type="Int32" />
+    <Property Name="won" Type="Boolean" />
+    <Property Name="fk_user" Type="Int32" />
+    <Property Name="fk_betting" Type="Int32" />
+    <NavigationProperty Name="bettings" Relationship="Self.belongs8" FromRole="users_bets" ToRole="bettings" />
+    <NavigationProperty Name="betting" Relationship="Self.has32" FromRole="users_bets" ToRole="bettings" />
+    <NavigationProperty Name="user" Relationship="Self.bets" FromRole="users_bets" ToRole="users" />
+    <NavigationProperty Name="users" Relationship="Self.has30" FromRole="users_bets" ToRole="users" />
+  </EntityType>
+  <EntityType Name="users_in_giveaway">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_user" Type="Int32" Nullable="false" />
+    <Property Name="fk_giveaway" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="giveaways" Relationship="Self.has14" FromRole="users_in_giveaway" ToRole="giveaways" />
+    <NavigationProperty Name="giveaway" Relationship="Self.has9" FromRole="users_in_giveaway" ToRole="giveaways" />
+    <NavigationProperty Name="user" Relationship="Self.has8" FromRole="users_in_giveaway" ToRole="users" />
+  </EntityType>
+  <Association Name="belongs8">
+    <End Role="users_bets" Type="Self.users_bets" Multiplicity="1" />
+    <End Role="bettings" Type="Self.betting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users_bets">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bettings">
+        <PropertyRef Name="fk_users_bets" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has11">
+    <End Role="matches" Type="Self.match" Multiplicity="1" />
+    <End Role="bettings" Type="Self.betting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="matches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bettings">
+        <PropertyRef Name="fk_match" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has16">
+    <End Role="bettings" Type="Self.betting" Multiplicity="0..1" />
+    <End Role="matches" Type="Self.match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bettings">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matches">
+        <PropertyRef Name="fk_betting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has32">
+    <End Role="bettings" Type="Self.betting" Multiplicity="0..1" />
+    <End Role="users_bets" Type="Self.users_bets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bettings">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users_bets">
+        <PropertyRef Name="fk_betting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has26">
+    <End Role="evaluation" Type="Self.evaluation" Multiplicity="0..1" />
+    <End Role="tournaments" Type="Self.tournament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="evaluation">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tournaments">
+        <PropertyRef Name="fk_evaluation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has29">
+    <End Role="evaluation" Type="Self.evaluation" Multiplicity="0..1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="evaluation">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="fk_evaluation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has7">
+    <End Role="tournaments" Type="Self.tournament" Multiplicity="1" />
+    <End Role="evaluation" Type="Self.evaluation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tournaments">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="evaluation">
+        <PropertyRef Name="fk_tournament" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="submits">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="evaluation" Type="Self.evaluation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="evaluation">
+        <PropertyRef Name="fk_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has12">
+    <End Role="tournaments" Type="Self.tournament" Multiplicity="0..1" />
+    <End Role="eventts" Type="Self.eventt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tournaments">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="eventts">
+        <PropertyRef Name="fk_tournament" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has18">
+    <End Role="eventts" Type="Self.eventt" Multiplicity="0..1" />
+    <End Role="programs" Type="Self.program" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="eventts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="programs">
+        <PropertyRef Name="fk_event" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has4">
+    <End Role="programs" Type="Self.program" Multiplicity="0..1" />
+    <End Role="eventts" Type="Self.eventt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="programs">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="eventts">
+        <PropertyRef Name="fk_program" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has5">
+    <End Role="eventts" Type="Self.eventt" Multiplicity="0..1" />
+    <End Role="tournaments" Type="Self.tournament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="eventts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tournaments">
+        <PropertyRef Name="fk_event" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has13">
+    <End Role="skins_in_giveaway" Type="Self.skins_in_giveaway" Multiplicity="0..1" />
+    <End Role="giveaways" Type="Self.giveaway" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="skins_in_giveaway">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="giveaways">
+        <PropertyRef Name="fk_skinsInGiveaway" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has14">
+    <End Role="users_in_giveaway" Type="Self.users_in_giveaway" Multiplicity="0..1" />
+    <End Role="giveaways" Type="Self.giveaway" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users_in_giveaway">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="giveaways">
+        <PropertyRef Name="fk_usersInGiveaway" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has2">
+    <End Role="giveaways" Type="Self.giveaway" Multiplicity="1" />
+    <End Role="skins_in_giveaway" Type="Self.skins_in_giveaway" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="giveaways">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="skins_in_giveaway">
+        <PropertyRef Name="fk_giveaway" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has28">
+    <End Role="giveaways" Type="Self.giveaway" Multiplicity="0..1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="giveaways">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="fk_giveaway" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has9">
+    <End Role="giveaways" Type="Self.giveaway" Multiplicity="1" />
+    <End Role="users_in_giveaway" Type="Self.users_in_giveaway" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="giveaways">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users_in_giveaway">
+        <PropertyRef Name="fk_giveaway" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="belongs3">
+    <End Role="tournaments" Type="Self.tournament" Multiplicity="0..1" />
+    <End Role="matches" Type="Self.match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tournaments">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matches">
+        <PropertyRef Name="fk_tournament" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has10">
+    <End Role="tickets" Type="Self.ticket" Multiplicity="0..1" />
+    <End Role="matches" Type="Self.match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tickets">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matches">
+        <PropertyRef Name="fk_ticket" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has15">
+    <End Role="place" Type="Self.place" Multiplicity="0..1" />
+    <End Role="matches" Type="Self.match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="place">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matches">
+        <PropertyRef Name="fk_place" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has22">
+    <End Role="matches" Type="Self.match" Multiplicity="0..1" />
+    <End Role="teams" Type="Self.team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="matches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="teams">
+        <PropertyRef Name="fk_match" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has25">
+    <End Role="matches" Type="Self.match" Multiplicity="0..1" />
+    <End Role="tournaments" Type="Self.tournament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="matches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tournaments">
+        <PropertyRef Name="fk_match" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has33">
+    <End Role="tickets" Type="Self.ticket" Multiplicity="0..1" />
+    <End Role="matches" Type="Self.match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tickets">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matches">
+        <PropertyRef Name="fk_ticket" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has6">
+    <End Role="matches" Type="Self.match" Multiplicity="1" />
+    <End Role="place" Type="Self.place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="matches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="place">
+        <PropertyRef Name="fk_match" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="plays">
+    <End Role="teams" Type="Self.team" Multiplicity="0..1" />
+    <End Role="matches" Type="Self.match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teams">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matches">
+        <PropertyRef Name="fk_first_team" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="plays1">
+    <End Role="teams" Type="Self.team" Multiplicity="0..1" />
+    <End Role="matches" Type="Self.match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teams">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matches">
+        <PropertyRef Name="fk_second_team" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="belongs">
+    <End Role="persons" Type="Self.person" Multiplicity="1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="fk_person" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="belongs1">
+    <End Role="persons" Type="Self.person" Multiplicity="0..1" />
+    <End Role="players" Type="Self.player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="players">
+        <PropertyRef Name="fk_person" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has31">
+    <End Role="place" Type="Self.place" Multiplicity="0..1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="place">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="fk_place" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="votes">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="place" Type="Self.place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="place">
+        <PropertyRef Name="fk_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="belongs5">
+    <End Role="teams" Type="Self.team" Multiplicity="0..1" />
+    <End Role="players" Type="Self.player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teams">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="players">
+        <PropertyRef Name="fk_team" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has">
+    <End Role="ratings" Type="Self.rating" Multiplicity="0..1" />
+    <End Role="players" Type="Self.player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ratings">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="players">
+        <PropertyRef Name="fk_rating" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has23">
+    <End Role="players" Type="Self.player" Multiplicity="0..1" />
+    <End Role="teams" Type="Self.team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="players">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="teams">
+        <PropertyRef Name="fk_player" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has17">
+    <End Role="tournaments" Type="Self.tournament" Multiplicity="0..1" />
+    <End Role="programs" Type="Self.program" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tournaments">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="programs">
+        <PropertyRef Name="fk_tournament" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has27">
+    <End Role="programs" Type="Self.program" Multiplicity="0..1" />
+    <End Role="tournaments" Type="Self.tournament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="programs">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tournaments">
+        <PropertyRef Name="fk_program" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has24">
+    <End Role="ratings" Type="Self.rating" Multiplicity="0..1" />
+    <End Role="teams" Type="Self.team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ratings">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="teams">
+        <PropertyRef Name="fk_rating" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has1">
+    <End Role="skins" Type="Self.skin" Multiplicity="1" />
+    <End Role="skins_in_giveaway" Type="Self.skins_in_giveaway" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="skins">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="skins_in_giveaway">
+        <PropertyRef Name="fk_skin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has3">
+    <End Role="tickets" Type="Self.ticket" Multiplicity="0..1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tickets">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="fk_ticket" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="bets">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="users_bets" Type="Self.users_bets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users_bets">
+        <PropertyRef Name="fk_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has30">
+    <End Role="users_bets" Type="Self.users_bets" Multiplicity="0..1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users_bets">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="fk_users_bets" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has8">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="users_in_giveaway" Type="Self.users_in_giveaway" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users_in_giveaway">
+        <PropertyRef Name="fk_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bettings" EntityType="Self.betting" />
+    <EntitySet Name="evaluations" EntityType="Self.evaluation" />
+    <EntitySet Name="eventts" EntityType="Self.eventt" />
+    <EntitySet Name="giveaways" EntityType="Self.giveaway" />
+    <EntitySet Name="matches" EntityType="Self.match" />
+    <EntitySet Name="persons" EntityType="Self.person" />
+    <EntitySet Name="places" EntityType="Self.place" />
+    <EntitySet Name="players" EntityType="Self.player" />
+    <EntitySet Name="programs" EntityType="Self.program" />
+    <EntitySet Name="ratings" EntityType="Self.rating" />
+    <EntitySet Name="skins" EntityType="Self.skin" />
+    <EntitySet Name="skins_in_giveaway" EntityType="Self.skins_in_giveaway" />
+    <EntitySet Name="teams" EntityType="Self.team" />
+    <EntitySet Name="tickets" EntityType="Self.ticket" />
+    <EntitySet Name="tournaments" EntityType="Self.tournament" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="users_bets" EntityType="Self.users_bets" />
+    <EntitySet Name="users_in_giveaway" EntityType="Self.users_in_giveaway" />
+    <AssociationSet Name="belongs8" Association="Self.belongs8">
+      <End Role="users_bets" EntitySet="users_bets" />
+      <End Role="bettings" EntitySet="bettings" />
+    </AssociationSet>
+    <AssociationSet Name="has11" Association="Self.has11">
+      <End Role="matches" EntitySet="matches" />
+      <End Role="bettings" EntitySet="bettings" />
+    </AssociationSet>
+    <AssociationSet Name="has16" Association="Self.has16">
+      <End Role="bettings" EntitySet="bettings" />
+      <End Role="matches" EntitySet="matches" />
+    </AssociationSet>
+    <AssociationSet Name="has32" Association="Self.has32">
+      <End Role="bettings" EntitySet="bettings" />
+      <End Role="users_bets" EntitySet="users_bets" />
+    </AssociationSet>
+    <AssociationSet Name="has26" Association="Self.has26">
+      <End Role="evaluation" EntitySet="evaluations" />
+      <End Role="tournaments" EntitySet="tournaments" />
+    </AssociationSet>
+    <AssociationSet Name="has29" Association="Self.has29">
+      <End Role="evaluation" EntitySet="evaluations" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="has7" Association="Self.has7">
+      <End Role="tournaments" EntitySet="tournaments" />
+      <End Role="evaluation" EntitySet="evaluations" />
+    </AssociationSet>
+    <AssociationSet Name="submits" Association="Self.submits">
+      <End Role="users" EntitySet="users" />
+      <End Role="evaluation" EntitySet="evaluations" />
+    </AssociationSet>
+    <AssociationSet Name="has12" Association="Self.has12">
+      <End Role="tournaments" EntitySet="tournaments" />
+      <End Role="eventts" EntitySet="eventts" />
+    </AssociationSet>
+    <AssociationSet Name="has18" Association="Self.has18">
+      <End Role="eventts" EntitySet="eventts" />
+      <End Role="programs" EntitySet="programs" />
+    </AssociationSet>
+    <AssociationSet Name="has4" Association="Self.has4">
+      <End Role="programs" EntitySet="programs" />
+      <End Role="eventts" EntitySet="eventts" />
+    </AssociationSet>
+    <AssociationSet Name="has5" Association="Self.has5">
+      <End Role="eventts" EntitySet="eventts" />
+      <End Role="tournaments" EntitySet="tournaments" />
+    </AssociationSet>
+    <AssociationSet Name="has13" Association="Self.has13">
+      <End Role="skins_in_giveaway" EntitySet="skins_in_giveaway" />
+      <End Role="giveaways" EntitySet="giveaways" />
+    </AssociationSet>
+    <AssociationSet Name="has14" Association="Self.has14">
+      <End Role="users_in_giveaway" EntitySet="users_in_giveaway" />
+      <End Role="giveaways" EntitySet="giveaways" />
+    </AssociationSet>
+    <AssociationSet Name="has2" Association="Self.has2">
+      <End Role="giveaways" EntitySet="giveaways" />
+      <End Role="skins_in_giveaway" EntitySet="skins_in_giveaway" />
+    </AssociationSet>
+    <AssociationSet Name="has28" Association="Self.has28">
+      <End Role="giveaways" EntitySet="giveaways" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="has9" Association="Self.has9">
+      <End Role="giveaways" EntitySet="giveaways" />
+      <End Role="users_in_giveaway" EntitySet="users_in_giveaway" />
+    </AssociationSet>
+    <AssociationSet Name="belongs3" Association="Self.belongs3">
+      <End Role="tournaments" EntitySet="tournaments" />
+      <End Role="matches" EntitySet="matches" />
+    </AssociationSet>
+    <AssociationSet Name="has10" Association="Self.has10">
+      <End Role="tickets" EntitySet="tickets" />
+      <End Role="matches" EntitySet="matches" />
+    </AssociationSet>
+    <AssociationSet Name="has15" Association="Self.has15">
+      <End Role="place" EntitySet="places" />
+      <End Role="matches" EntitySet="matches" />
+    </AssociationSet>
+    <AssociationSet Name="has22" Association="Self.has22">
+      <End Role="matches" EntitySet="matches" />
+      <End Role="teams" EntitySet="teams" />
+    </AssociationSet>
+    <AssociationSet Name="has25" Association="Self.has25">
+      <End Role="matches" EntitySet="matches" />
+      <End Role="tournaments" EntitySet="tournaments" />
+    </AssociationSet>
+    <AssociationSet Name="has33" Association="Self.has33">
+      <End Role="tickets" EntitySet="tickets" />
+      <End Role="matches" EntitySet="matches" />
+    </AssociationSet>
+    <AssociationSet Name="has6" Association="Self.has6">
+      <End Role="matches" EntitySet="matches" />
+      <End Role="place" EntitySet="places" />
+    </AssociationSet>
+    <AssociationSet Name="plays" Association="Self.plays">
+      <End Role="teams" EntitySet="teams" />
+      <End Role="matches" EntitySet="matches" />
+    </AssociationSet>
+    <AssociationSet Name="plays1" Association="Self.plays1">
+      <End Role="teams" EntitySet="teams" />
+      <End Role="matches" EntitySet="matches" />
+    </AssociationSet>
+    <AssociationSet Name="belongs" Association="Self.belongs">
+      <End Role="persons" EntitySet="persons" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="belongs1" Association="Self.belongs1">
+      <End Role="persons" EntitySet="persons" />
+      <End Role="players" EntitySet="players" />
+    </AssociationSet>
+    <AssociationSet Name="has31" Association="Self.has31">
+      <End Role="place" EntitySet="places" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="votes" Association="Self.votes">
+      <End Role="users" EntitySet="users" />
+      <End Role="place" EntitySet="places" />
+    </AssociationSet>
+    <AssociationSet Name="belongs5" Association="Self.belongs5">
+      <End Role="teams" EntitySet="teams" />
+      <End Role="players" EntitySet="players" />
+    </AssociationSet>
+    <AssociationSet Name="has" Association="Self.has">
+      <End Role="ratings" EntitySet="ratings" />
+      <End Role="players" EntitySet="players" />
+    </AssociationSet>
+    <AssociationSet Name="has23" Association="Self.has23">
+      <End Role="players" EntitySet="players" />
+      <End Role="teams" EntitySet="teams" />
+    </AssociationSet>
+    <AssociationSet Name="has17" Association="Self.has17">
+      <End Role="tournaments" EntitySet="tournaments" />
+      <End Role="programs" EntitySet="programs" />
+    </AssociationSet>
+    <AssociationSet Name="has27" Association="Self.has27">
+      <End Role="programs" EntitySet="programs" />
+      <End Role="tournaments" EntitySet="tournaments" />
+    </AssociationSet>
+    <AssociationSet Name="has24" Association="Self.has24">
+      <End Role="ratings" EntitySet="ratings" />
+      <End Role="teams" EntitySet="teams" />
+    </AssociationSet>
+    <AssociationSet Name="has1" Association="Self.has1">
+      <End Role="skins" EntitySet="skins" />
+      <End Role="skins_in_giveaway" EntitySet="skins_in_giveaway" />
+    </AssociationSet>
+    <AssociationSet Name="has3" Association="Self.has3">
+      <End Role="tickets" EntitySet="tickets" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="bets" Association="Self.bets">
+      <End Role="users" EntitySet="users" />
+      <End Role="users_bets" EntitySet="users_bets" />
+    </AssociationSet>
+    <AssociationSet Name="has30" Association="Self.has30">
+      <End Role="users_bets" EntitySet="users_bets" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="has8" Association="Self.has8">
+      <End Role="users" EntitySet="users" />
+      <End Role="users_in_giveaway" EntitySet="users_in_giveaway" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,72 @@
+﻿@model CSGO.Models.team
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>team</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.defeats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.defeats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.match.map)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.match.map)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.player.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.player.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rating.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rating.id)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

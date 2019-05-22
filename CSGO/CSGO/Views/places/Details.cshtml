@@ -1,0 +1,42 @@
+﻿@model CSGO.Models.place
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>place</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.index)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.index)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.match.map)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.match.map)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
