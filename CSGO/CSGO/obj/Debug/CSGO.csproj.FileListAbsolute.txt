@@ -48,8 +48,12 @@ C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\roslyn\vbc.rsp
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\roslyn\VBCSCompiler.exe
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\Antlr3.Runtime.dll
+C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\EntityFramework.dll
+C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\EntityFramework.SqlServer.dll
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\MySql.Data.dll
+C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\MySql.Data.Entity.EF6.dll
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\Newtonsoft.Json.dll
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\System.Web.Helpers.dll
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\System.Web.Mvc.dll
@@ -59,6 +63,10 @@ C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\System.Web.WebPa
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\System.Web.WebPages.dll
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\System.Web.WebPages.Razor.dll
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\WebGrease.dll
+C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\EntityFramework.xml
+C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\EntityFramework.SqlServer.xml
+C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\MySql.Data.xml
+C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\MySql.Data.Entity.EF6.xml
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\System.Web.Helpers.xml
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\System.Web.Mvc.xml
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\System.Web.Optimization.xml

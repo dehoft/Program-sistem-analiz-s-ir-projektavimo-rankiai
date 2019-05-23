@@ -164,6 +164,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="password" Type="longtext" Nullable="false" />
+          <Property Name="userLevel" Type="int" Nullable="false" />
           <Property Name="first_name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="last_name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="sex" Type="varchar" MaxLength="20" Nullable="false" />
@@ -1024,6 +1025,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userLevel" Type="Int32" Nullable="false" />
           <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="sex" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1855,6 +1857,7 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userLevel" ColumnName="userLevel" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
                 <ScalarProperty Name="sex" ColumnName="sex" />

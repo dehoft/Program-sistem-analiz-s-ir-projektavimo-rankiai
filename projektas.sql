@@ -124,8 +124,6 @@ CREATE TABLE `place` (
 
 CREATE TABLE `players` (
   `id` int(11) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` longtext NOT NULL,
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `sex` varchar(20) NOT NULL,
@@ -239,6 +237,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` longtext NOT NULL,
+  `userlevel` int(11) NOT NULL DEFAULT `1`,
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `sex` varchar(20) NOT NULL,

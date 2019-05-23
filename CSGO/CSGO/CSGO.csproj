@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{61601146-5F77-44E7-8265-D9E996A8CE48}</ProjectGuid>
+    <ProjectGuid>{7DB10F7B-8022-4E5B-9E29-D4F7755973B6}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -139,7 +139,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\bettingsController.cs" />
+    <Compile Include="Controllers\GiveawaysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SkinsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -261,6 +264,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\bettings\Create.cshtml" />
+    <Content Include="Views\bettings\Delete.cshtml" />
+    <Content Include="Views\bettings\Details.cshtml" />
+    <Content Include="Views\bettings\Edit.cshtml" />
+    <Content Include="Views\bettings\Index.cshtml" />
+    <Content Include="Views\Giveaways\Create.cshtml" />
+    <Content Include="Views\Giveaways\Delete.cshtml" />
+    <Content Include="Views\Giveaways\Details.cshtml" />
+    <Content Include="Views\Giveaways\Edit.cshtml" />
+    <Content Include="Views\Giveaways\Index.cshtml" />
+    <Content Include="Views\Skins\Create.cshtml" />
+    <Content Include="Views\Skins\Delete.cshtml" />
+    <Content Include="Views\Skins\Details.cshtml" />
+    <Content Include="Views\Skins\Edit.cshtml" />
+    <Content Include="Views\Skins\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -297,9 +315,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>64818</DevelopmentServerPort>
+          <DevelopmentServerPort>65488</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:64818/</IISUrl>
+          <IISUrl>http://localhost:65488/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
