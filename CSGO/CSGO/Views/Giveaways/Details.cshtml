@@ -9,50 +9,47 @@
 <div>
     <h4>giveaway</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.description)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.description)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.start_time)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.start_time)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.start_time)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.start_time)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.end_time)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.end_time)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.end_time)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.end_time)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.skins_in_giveaway.skin)
+		</dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.skins_in_giveaway.id)
-        </dt>
+		@foreach (var item in Model.skins_in_giveaway1.ToList())
+		{
+		<td>
+			@Html.DisplayFor(modelitem => item.skin.name)
+			@Html.ActionLink("Remove", "Remove", new { id = item.id })
+		</td>
+		}
 
-        <dd>
-            @Html.DisplayFor(model => model.skins_in_giveaway.id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.users_in_giveaway.id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.users_in_giveaway.id)
-        </dd>
-
-    </dl>
+		</dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+	@Html.ActionLink("Back to List", "Index") |
+	@Html.ActionLink("Skins", "Add", new { id = Model.id })
+
 </p>

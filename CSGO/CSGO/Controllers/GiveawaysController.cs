@@ -18,6 +18,7 @@ namespace CSGO.Controllers
         public ActionResult Index()
         {
             var giveaways = db.giveaways.Include(g => g.skins_in_giveaway).Include(g => g.users_in_giveaway);
+			Session.Remove("GiveawayID");
             return View(giveaways.ToList());
         }
 
@@ -29,7 +30,9 @@ namespace CSGO.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             giveaway giveaway = db.giveaways.Find(id);
-            if (giveaway == null)
+			//var skin = db.skins;
+
+			if (giveaway == null)
             {
                 return HttpNotFound();
             }
@@ -124,7 +127,29 @@ namespace CSGO.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+		// GET: Giveaways/Add/5
+		public ActionResult Add(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Session["GiveawayID"] = id;
+			return RedirectToAction("Index", "Skins");
+		}
+
+		// GET: Giveaways/Remove/5
+		public ActionResult Remove(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Session["RemoveSkinId"] = id;
+			return RedirectToAction("Remove", "Skins");
+		}
+
+		protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

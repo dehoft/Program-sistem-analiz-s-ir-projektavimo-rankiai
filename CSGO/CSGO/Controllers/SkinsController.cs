@@ -115,7 +115,53 @@ namespace CSGO.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+		// GET: Skins/Add/5
+		public ActionResult Add(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			skin skin = db.skins.Find(id);
+			if (skin == null)
+			{
+				return HttpNotFound();
+			}
+			return View(skin);
+		}
+
+		// POST: Skins/Add/5
+		[HttpPost, ActionName("Add")]
+		[ValidateAntiForgeryToken]
+		public ActionResult AddConfirmed(int id)
+		{
+			skin skin = db.skins.Find(id);
+			giveaway giveaway = db.giveaways.Find(Session["GiveawayID"]);
+			skins_in_giveaway skins_in_giveaway = new skins_in_giveaway();
+			skins_in_giveaway.fk_giveaway = giveaway.id;
+			skins_in_giveaway.fk_skin = skin.id;
+			db.skins_in_giveaway.Add(skins_in_giveaway);
+			db.SaveChanges();
+			return RedirectToAction("Index");
+		}
+
+		public ActionResult Remove()
+		{
+			int id = (int)Session["RemoveSkinId"];
+			skins_in_giveaway skins_in_giveaway = db.skins_in_giveaway.Find(id);
+
+			if (skins_in_giveaway == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			db.skins_in_giveaway.Remove(skins_in_giveaway);
+			db.SaveChanges();
+			Session.Remove("RemoveSkinId");
+			return RedirectToAction("Index", "Giveaways");
+		}
+
+		protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

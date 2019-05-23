@@ -1,0 +1,16 @@
+﻿@{
+	ViewBag.Title = "AdminDashBoard";
+}
+
+<fieldset>
+
+
+	@if (Session["ID"] != null)
+	{
+		<text>Welcome @Session["userName"].ToString() </text>
+		<ul>
+			<li>@Html.ActionLink("Giveaways", "Index", "Giveaways")</li>
+			<li>@Html.ActionLink("Skins", "Index", "Skins")</li>
+		</ul>
+	}
+</fieldset>
