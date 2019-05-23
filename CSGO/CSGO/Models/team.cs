@@ -26,9 +26,12 @@ namespace CSGO.Models
         public string name { get; set; }
         public int wins { get; set; }
         public int defeats { get; set; }
+        public int maps_played { get; set; }
+        public int round_number { get; set; }
+        public int total_kills { get; set; }
+        public int total_deaths { get; set; }
         public Nullable<int> fk_match { get; set; }
         public Nullable<int> fk_player { get; set; }
-        public Nullable<int> fk_rating { get; set; }
     
         public virtual match match { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -38,6 +41,5 @@ namespace CSGO.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<player> players { get; set; }
         public virtual player player { get; set; }
-        public virtual rating rating { get; set; }
     }
 }

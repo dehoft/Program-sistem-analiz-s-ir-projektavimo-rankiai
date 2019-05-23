@@ -30,11 +30,9 @@ namespace CSGO.Models
         public virtual DbSet<eventt> eventts { get; set; }
         public virtual DbSet<giveaway> giveaways { get; set; }
         public virtual DbSet<match> matches { get; set; }
-        public virtual DbSet<person> persons { get; set; }
         public virtual DbSet<place> places { get; set; }
         public virtual DbSet<player> players { get; set; }
         public virtual DbSet<program> programs { get; set; }
-        public virtual DbSet<rating> ratings { get; set; }
         public virtual DbSet<skin> skins { get; set; }
         public virtual DbSet<skins_in_giveaway> skins_in_giveaway { get; set; }
         public virtual DbSet<team> teams { get; set; }

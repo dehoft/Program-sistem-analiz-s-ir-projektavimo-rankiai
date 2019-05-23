@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Mine\KTU\3 Kursas\2 Semestras\Analize\CSGO\CSGO\Models\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\Models\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

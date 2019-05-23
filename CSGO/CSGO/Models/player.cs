@@ -22,19 +22,24 @@ namespace CSGO.Models
     
         public int id { get; set; }
         public string username { get; set; }
+        public string password { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+        public string sex { get; set; }
+        public string email { get; set; }
         public double rating { get; set; }
         public int age { get; set; }
         public string country { get; set; }
         public int assists { get; set; }
         public int headshots { get; set; }
         public double damage_per_second { get; set; }
-        public Nullable<int> fk_person { get; set; }
-        public Nullable<int> fk_rating { get; set; }
+        public int maps_played { get; set; }
+        public int round_number { get; set; }
+        public int total_kills { get; set; }
+        public int total_deaths { get; set; }
         public Nullable<int> fk_team { get; set; }
     
-        public virtual person person { get; set; }
         public virtual team team { get; set; }
-        public virtual rating rating1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<team> teams { get; set; }
     }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CSGOModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DBModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bettings">
           <Key>
             <PropertyRef Name="id" />
@@ -64,18 +64,6 @@
           <Property Name="fk_betting" Type="int" />
           <Property Name="fk_ticket" Type="int" />
         </EntityType>
-        <EntityType Name="persons">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="password" Type="longtext" Nullable="false" />
-          <Property Name="first_name" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="last_name" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="sex" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="place">
           <Key>
             <PropertyRef Name="id" />
@@ -91,14 +79,21 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="longtext" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="sex" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="rating" Type="double" Nullable="false" />
           <Property Name="age" Type="int" Nullable="false" />
           <Property Name="country" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="assists" Type="int" Nullable="false" />
           <Property Name="headshots" Type="int" Nullable="false" />
           <Property Name="damage_per_second" Type="double" Nullable="false" />
-          <Property Name="fk_person" Type="int" />
-          <Property Name="fk_rating" Type="int" />
+          <Property Name="maps_played" Type="int" Nullable="false" />
+          <Property Name="round_number" Type="int" Nullable="false" />
+          <Property Name="total_kills" Type="int" Nullable="false" />
+          <Property Name="total_deaths" Type="int" Nullable="false" />
           <Property Name="fk_team" Type="int" />
         </EntityType>
         <EntityType Name="programs">
@@ -110,19 +105,6 @@
           <Property Name="description" Type="longtext" Nullable="false" />
           <Property Name="fk_tournament" Type="int" />
           <Property Name="fk_event" Type="int" />
-        </EntityType>
-        <EntityType Name="ratings">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="maps_played" Type="int" Nullable="false" />
-          <Property Name="round_number" Type="int" Nullable="false" />
-          <Property Name="total_kills" Type="int" Nullable="false" />
-          <Property Name="total_deaths" Type="int" Nullable="false" />
-          <Property Name="kd_ratio" Type="double" Nullable="false" />
-          <Property Name="fk_team" Type="int" />
-          <Property Name="fk_player" Type="int" />
         </EntityType>
         <EntityType Name="skins">
           <Key>
@@ -148,9 +130,12 @@
           <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="wins" Type="int" Nullable="false" />
           <Property Name="defeats" Type="int" Nullable="false" />
+          <Property Name="maps_played" Type="int" Nullable="false" />
+          <Property Name="round_number" Type="int" Nullable="false" />
+          <Property Name="total_kills" Type="int" Nullable="false" />
+          <Property Name="total_deaths" Type="int" Nullable="false" />
           <Property Name="fk_match" Type="int" />
           <Property Name="fk_player" Type="int" />
-          <Property Name="fk_rating" Type="int" />
         </EntityType>
         <EntityType Name="tickets">
           <Key>
@@ -177,7 +162,12 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fk_person" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="longtext" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="sex" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fk_ticket" Type="int" />
           <Property Name="fk_users_bets" Type="int" />
           <Property Name="fk_giveaway" Type="int" />
@@ -202,30 +192,6 @@
           <Property Name="fk_user" Type="int" Nullable="false" />
           <Property Name="fk_giveaway" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="belongs">
-          <End Role="persons" Type="Self.persons" Multiplicity="1" />
-          <End Role="users" Type="Self.users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="persons">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="fk_person" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="belongs1">
-          <End Role="persons" Type="Self.persons" Multiplicity="0..1" />
-          <End Role="players" Type="Self.players" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="persons">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="players">
-              <PropertyRef Name="fk_person" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="belongs3">
           <End Role="tournaments" Type="Self.tournaments" Multiplicity="0..1" />
           <End Role="matches" Type="Self.matches" Multiplicity="*" />
@@ -271,18 +237,6 @@
             </Principal>
             <Dependent Role="users_bets">
               <PropertyRef Name="fk_user" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="has">
-          <End Role="ratings" Type="Self.ratings" Multiplicity="0..1" />
-          <End Role="players" Type="Self.players" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ratings">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="players">
-              <PropertyRef Name="fk_rating" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -439,18 +393,6 @@
             </Principal>
             <Dependent Role="teams">
               <PropertyRef Name="fk_player" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="has24">
-          <End Role="ratings" Type="Self.ratings" Multiplicity="0..1" />
-          <End Role="teams" Type="Self.teams" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ratings">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="teams">
-              <PropertyRef Name="fk_rating" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -694,17 +636,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CSGOModelStoreContainer">
+        <EntityContainer Name="DBModelStoreContainer">
           <EntitySet Name="bettings" EntityType="Self.bettings" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="evaluation" EntityType="Self.evaluation" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="eventts" EntityType="Self.eventts" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="giveaways" EntityType="Self.giveaways" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="matches" EntityType="Self.matches" Schema="projektas" store:Type="Tables" />
-          <EntitySet Name="persons" EntityType="Self.persons" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="place" EntityType="Self.place" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="players" EntityType="Self.players" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="programs" EntityType="Self.programs" Schema="projektas" store:Type="Tables" />
-          <EntitySet Name="ratings" EntityType="Self.ratings" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="skins" EntityType="Self.skins" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="skins_in_giveaway" EntityType="Self.skins_in_giveaway" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="teams" EntityType="Self.teams" Schema="projektas" store:Type="Tables" />
@@ -713,14 +653,6 @@
           <EntitySet Name="users" EntityType="Self.users" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="users_bets" EntityType="Self.users_bets" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="users_in_giveaway" EntityType="Self.users_in_giveaway" Schema="projektas" store:Type="Tables" />
-          <AssociationSet Name="belongs" Association="Self.belongs">
-            <End Role="persons" EntitySet="persons" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="belongs1" Association="Self.belongs1">
-            <End Role="persons" EntitySet="persons" />
-            <End Role="players" EntitySet="players" />
-          </AssociationSet>
           <AssociationSet Name="belongs3" Association="Self.belongs3">
             <End Role="tournaments" EntitySet="tournaments" />
             <End Role="matches" EntitySet="matches" />
@@ -736,10 +668,6 @@
           <AssociationSet Name="bets" Association="Self.bets">
             <End Role="users" EntitySet="users" />
             <End Role="users_bets" EntitySet="users_bets" />
-          </AssociationSet>
-          <AssociationSet Name="has" Association="Self.has">
-            <End Role="ratings" EntitySet="ratings" />
-            <End Role="players" EntitySet="players" />
           </AssociationSet>
           <AssociationSet Name="has1" Association="Self.has1">
             <End Role="skins" EntitySet="skins" />
@@ -791,10 +719,6 @@
           </AssociationSet>
           <AssociationSet Name="has23" Association="Self.has23">
             <End Role="players" EntitySet="players" />
-            <End Role="teams" EntitySet="teams" />
-          </AssociationSet>
-          <AssociationSet Name="has24" Association="Self.has24">
-            <End Role="ratings" EntitySet="ratings" />
             <End Role="teams" EntitySet="teams" />
           </AssociationSet>
           <AssociationSet Name="has25" Association="Self.has25">
@@ -882,7 +806,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CSGOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="betting">
           <Key>
             <PropertyRef Name="id" />
@@ -970,20 +894,6 @@
           <NavigationProperty Name="team" Relationship="Self.plays" FromRole="matches" ToRole="teams" />
           <NavigationProperty Name="team1" Relationship="Self.plays1" FromRole="matches" ToRole="teams" />
         </EntityType>
-        <EntityType Name="person">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="sex" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="users" Relationship="Self.belongs" FromRole="persons" ToRole="users" />
-          <NavigationProperty Name="players" Relationship="Self.belongs1" FromRole="persons" ToRole="players" />
-        </EntityType>
         <EntityType Name="place">
           <Key>
             <PropertyRef Name="id" />
@@ -1003,18 +913,23 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sex" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rating" Type="Double" Nullable="false" />
           <Property Name="age" Type="Int32" Nullable="false" />
           <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="assists" Type="Int32" Nullable="false" />
           <Property Name="headshots" Type="Int32" Nullable="false" />
           <Property Name="damage_per_second" Type="Double" Nullable="false" />
-          <Property Name="fk_person" Type="Int32" />
-          <Property Name="fk_rating" Type="Int32" />
+          <Property Name="maps_played" Type="Int32" Nullable="false" />
+          <Property Name="round_number" Type="Int32" Nullable="false" />
+          <Property Name="total_kills" Type="Int32" Nullable="false" />
+          <Property Name="total_deaths" Type="Int32" Nullable="false" />
           <Property Name="fk_team" Type="Int32" />
-          <NavigationProperty Name="person" Relationship="Self.belongs1" FromRole="players" ToRole="persons" />
           <NavigationProperty Name="team" Relationship="Self.belongs5" FromRole="players" ToRole="teams" />
-          <NavigationProperty Name="rating1" Relationship="Self.has" FromRole="players" ToRole="ratings" />
           <NavigationProperty Name="teams" Relationship="Self.has23" FromRole="players" ToRole="teams" />
         </EntityType>
         <EntityType Name="program">
@@ -1030,21 +945,6 @@
           <NavigationProperty Name="eventts" Relationship="Self.has4" FromRole="programs" ToRole="eventts" />
           <NavigationProperty Name="tournament" Relationship="Self.has17" FromRole="programs" ToRole="tournaments" />
           <NavigationProperty Name="tournaments" Relationship="Self.has27" FromRole="programs" ToRole="tournaments" />
-        </EntityType>
-        <EntityType Name="rating">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="maps_played" Type="Int32" Nullable="false" />
-          <Property Name="round_number" Type="Int32" Nullable="false" />
-          <Property Name="total_kills" Type="Int32" Nullable="false" />
-          <Property Name="total_deaths" Type="Int32" Nullable="false" />
-          <Property Name="kd_ratio" Type="Double" Nullable="false" />
-          <Property Name="fk_team" Type="Int32" />
-          <Property Name="fk_player" Type="Int32" />
-          <NavigationProperty Name="players" Relationship="Self.has" FromRole="ratings" ToRole="players" />
-          <NavigationProperty Name="teams" Relationship="Self.has24" FromRole="ratings" ToRole="teams" />
         </EntityType>
         <EntityType Name="skin">
           <Key>
@@ -1074,15 +974,17 @@
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="wins" Type="Int32" Nullable="false" />
           <Property Name="defeats" Type="Int32" Nullable="false" />
+          <Property Name="maps_played" Type="Int32" Nullable="false" />
+          <Property Name="round_number" Type="Int32" Nullable="false" />
+          <Property Name="total_kills" Type="Int32" Nullable="false" />
+          <Property Name="total_deaths" Type="Int32" Nullable="false" />
           <Property Name="fk_match" Type="Int32" />
           <Property Name="fk_player" Type="Int32" />
-          <Property Name="fk_rating" Type="Int32" />
           <NavigationProperty Name="match" Relationship="Self.has22" FromRole="teams" ToRole="matches" />
           <NavigationProperty Name="matches" Relationship="Self.plays" FromRole="teams" ToRole="matches" />
           <NavigationProperty Name="matches1" Relationship="Self.plays1" FromRole="teams" ToRole="matches" />
           <NavigationProperty Name="players" Relationship="Self.belongs5" FromRole="teams" ToRole="players" />
           <NavigationProperty Name="player" Relationship="Self.has23" FromRole="teams" ToRole="players" />
-          <NavigationProperty Name="rating" Relationship="Self.has24" FromRole="teams" ToRole="ratings" />
         </EntityType>
         <EntityType Name="ticket">
           <Key>
@@ -1120,7 +1022,12 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fk_person" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sex" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fk_ticket" Type="Int32" />
           <Property Name="fk_users_bets" Type="Int32" />
           <Property Name="fk_giveaway" Type="Int32" />
@@ -1129,7 +1036,6 @@
           <NavigationProperty Name="evaluation" Relationship="Self.has29" FromRole="users" ToRole="evaluation" />
           <NavigationProperty Name="evaluations" Relationship="Self.submits" FromRole="users" ToRole="evaluation" />
           <NavigationProperty Name="giveaway" Relationship="Self.has28" FromRole="users" ToRole="giveaways" />
-          <NavigationProperty Name="person" Relationship="Self.belongs" FromRole="users" ToRole="persons" />
           <NavigationProperty Name="place" Relationship="Self.has31" FromRole="users" ToRole="place" />
           <NavigationProperty Name="places" Relationship="Self.votes" FromRole="users" ToRole="place" />
           <NavigationProperty Name="ticket" Relationship="Self.has3" FromRole="users" ToRole="tickets" />
@@ -1474,30 +1380,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="belongs">
-          <End Role="persons" Type="Self.person" Multiplicity="1" />
-          <End Role="users" Type="Self.user" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="persons">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="fk_person" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="belongs1">
-          <End Role="persons" Type="Self.person" Multiplicity="0..1" />
-          <End Role="players" Type="Self.player" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="persons">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="players">
-              <PropertyRef Name="fk_person" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="has31">
           <End Role="place" Type="Self.place" Multiplicity="0..1" />
           <End Role="users" Type="Self.user" Multiplicity="*" />
@@ -1534,18 +1416,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="has">
-          <End Role="ratings" Type="Self.rating" Multiplicity="0..1" />
-          <End Role="players" Type="Self.player" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ratings">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="players">
-              <PropertyRef Name="fk_rating" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="has23">
           <End Role="players" Type="Self.player" Multiplicity="0..1" />
           <End Role="teams" Type="Self.team" Multiplicity="*" />
@@ -1579,18 +1449,6 @@
             </Principal>
             <Dependent Role="tournaments">
               <PropertyRef Name="fk_program" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="has24">
-          <End Role="ratings" Type="Self.rating" Multiplicity="0..1" />
-          <End Role="teams" Type="Self.team" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ratings">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="teams">
-              <PropertyRef Name="fk_rating" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1660,11 +1518,9 @@
           <EntitySet Name="eventts" EntityType="Self.eventt" />
           <EntitySet Name="giveaways" EntityType="Self.giveaway" />
           <EntitySet Name="matches" EntityType="Self.match" />
-          <EntitySet Name="persons" EntityType="Self.person" />
           <EntitySet Name="places" EntityType="Self.place" />
           <EntitySet Name="players" EntityType="Self.player" />
           <EntitySet Name="programs" EntityType="Self.program" />
-          <EntitySet Name="ratings" EntityType="Self.rating" />
           <EntitySet Name="skins" EntityType="Self.skin" />
           <EntitySet Name="skins_in_giveaway" EntityType="Self.skins_in_giveaway" />
           <EntitySet Name="teams" EntityType="Self.team" />
@@ -1777,14 +1633,6 @@
             <End Role="teams" EntitySet="teams" />
             <End Role="matches" EntitySet="matches" />
           </AssociationSet>
-          <AssociationSet Name="belongs" Association="Self.belongs">
-            <End Role="persons" EntitySet="persons" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="belongs1" Association="Self.belongs1">
-            <End Role="persons" EntitySet="persons" />
-            <End Role="players" EntitySet="players" />
-          </AssociationSet>
           <AssociationSet Name="has31" Association="Self.has31">
             <End Role="place" EntitySet="places" />
             <End Role="users" EntitySet="users" />
@@ -1795,10 +1643,6 @@
           </AssociationSet>
           <AssociationSet Name="belongs5" Association="Self.belongs5">
             <End Role="teams" EntitySet="teams" />
-            <End Role="players" EntitySet="players" />
-          </AssociationSet>
-          <AssociationSet Name="has" Association="Self.has">
-            <End Role="ratings" EntitySet="ratings" />
             <End Role="players" EntitySet="players" />
           </AssociationSet>
           <AssociationSet Name="has23" Association="Self.has23">
@@ -1812,10 +1656,6 @@
           <AssociationSet Name="has27" Association="Self.has27">
             <End Role="programs" EntitySet="programs" />
             <End Role="tournaments" EntitySet="tournaments" />
-          </AssociationSet>
-          <AssociationSet Name="has24" Association="Self.has24">
-            <End Role="ratings" EntitySet="ratings" />
-            <End Role="teams" EntitySet="teams" />
           </AssociationSet>
           <AssociationSet Name="has1" Association="Self.has1">
             <End Role="skins" EntitySet="skins" />
@@ -1843,9 +1683,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CSGOModelStoreContainer" CdmEntityContainer="dbEntities">
+        <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="dbEntities">
           <EntitySetMapping Name="bettings">
-            <EntityTypeMapping TypeName="CSGOModel.betting">
+            <EntityTypeMapping TypeName="DBModel.betting">
               <MappingFragment StoreEntitySet="bettings">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="coefficient" ColumnName="coefficient" />
@@ -1855,7 +1695,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="evaluations">
-            <EntityTypeMapping TypeName="CSGOModel.evaluation">
+            <EntityTypeMapping TypeName="DBModel.evaluation">
               <MappingFragment StoreEntitySet="evaluation">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="score" ColumnName="score" />
@@ -1867,7 +1707,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="eventts">
-            <EntityTypeMapping TypeName="CSGOModel.eventt">
+            <EntityTypeMapping TypeName="DBModel.eventt">
               <MappingFragment StoreEntitySet="eventts">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="start_time" ColumnName="start_time" />
@@ -1879,7 +1719,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="giveaways">
-            <EntityTypeMapping TypeName="CSGOModel.giveaway">
+            <EntityTypeMapping TypeName="DBModel.giveaway">
               <MappingFragment StoreEntitySet="giveaways">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -1891,7 +1731,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="matches">
-            <EntityTypeMapping TypeName="CSGOModel.match">
+            <EntityTypeMapping TypeName="DBModel.match">
               <MappingFragment StoreEntitySet="matches">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="start_time" ColumnName="start_time" />
@@ -1908,21 +1748,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="persons">
-            <EntityTypeMapping TypeName="CSGOModel.person">
-              <MappingFragment StoreEntitySet="persons">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="first_name" ColumnName="first_name" />
-                <ScalarProperty Name="last_name" ColumnName="last_name" />
-                <ScalarProperty Name="sex" ColumnName="sex" />
-                <ScalarProperty Name="email" ColumnName="email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="places">
-            <EntityTypeMapping TypeName="CSGOModel.place">
+            <EntityTypeMapping TypeName="DBModel.place">
               <MappingFragment StoreEntitySet="place">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="index" ColumnName="index" />
@@ -1932,24 +1759,31 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="players">
-            <EntityTypeMapping TypeName="CSGOModel.player">
+            <EntityTypeMapping TypeName="DBModel.player">
               <MappingFragment StoreEntitySet="players">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="age" ColumnName="age" />
                 <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="assists" ColumnName="assists" />
                 <ScalarProperty Name="headshots" ColumnName="headshots" />
                 <ScalarProperty Name="damage_per_second" ColumnName="damage_per_second" />
-                <ScalarProperty Name="fk_person" ColumnName="fk_person" />
-                <ScalarProperty Name="fk_rating" ColumnName="fk_rating" />
+                <ScalarProperty Name="maps_played" ColumnName="maps_played" />
+                <ScalarProperty Name="round_number" ColumnName="round_number" />
+                <ScalarProperty Name="total_kills" ColumnName="total_kills" />
+                <ScalarProperty Name="total_deaths" ColumnName="total_deaths" />
                 <ScalarProperty Name="fk_team" ColumnName="fk_team" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="programs">
-            <EntityTypeMapping TypeName="CSGOModel.program">
+            <EntityTypeMapping TypeName="DBModel.program">
               <MappingFragment StoreEntitySet="programs">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1959,22 +1793,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ratings">
-            <EntityTypeMapping TypeName="CSGOModel.rating">
-              <MappingFragment StoreEntitySet="ratings">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="maps_played" ColumnName="maps_played" />
-                <ScalarProperty Name="round_number" ColumnName="round_number" />
-                <ScalarProperty Name="total_kills" ColumnName="total_kills" />
-                <ScalarProperty Name="total_deaths" ColumnName="total_deaths" />
-                <ScalarProperty Name="kd_ratio" ColumnName="kd_ratio" />
-                <ScalarProperty Name="fk_team" ColumnName="fk_team" />
-                <ScalarProperty Name="fk_player" ColumnName="fk_player" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="skins">
-            <EntityTypeMapping TypeName="CSGOModel.skin">
+            <EntityTypeMapping TypeName="DBModel.skin">
               <MappingFragment StoreEntitySet="skins">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1983,7 +1803,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="skins_in_giveaway">
-            <EntityTypeMapping TypeName="CSGOModel.skins_in_giveaway">
+            <EntityTypeMapping TypeName="DBModel.skins_in_giveaway">
               <MappingFragment StoreEntitySet="skins_in_giveaway">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="fk_skin" ColumnName="fk_skin" />
@@ -1992,20 +1812,23 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="teams">
-            <EntityTypeMapping TypeName="CSGOModel.team">
+            <EntityTypeMapping TypeName="DBModel.team">
               <MappingFragment StoreEntitySet="teams">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="wins" ColumnName="wins" />
                 <ScalarProperty Name="defeats" ColumnName="defeats" />
+                <ScalarProperty Name="maps_played" ColumnName="maps_played" />
+                <ScalarProperty Name="round_number" ColumnName="round_number" />
+                <ScalarProperty Name="total_kills" ColumnName="total_kills" />
+                <ScalarProperty Name="total_deaths" ColumnName="total_deaths" />
                 <ScalarProperty Name="fk_match" ColumnName="fk_match" />
                 <ScalarProperty Name="fk_player" ColumnName="fk_player" />
-                <ScalarProperty Name="fk_rating" ColumnName="fk_rating" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tickets">
-            <EntityTypeMapping TypeName="CSGOModel.ticket">
+            <EntityTypeMapping TypeName="DBModel.ticket">
               <MappingFragment StoreEntitySet="tickets">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="price" ColumnName="price" />
@@ -2014,7 +1837,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tournaments">
-            <EntityTypeMapping TypeName="CSGOModel.tournament">
+            <EntityTypeMapping TypeName="DBModel.tournament">
               <MappingFragment StoreEntitySet="tournaments">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -2027,10 +1850,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="CSGOModel.user">
+            <EntityTypeMapping TypeName="DBModel.user">
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="fk_person" ColumnName="fk_person" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="fk_ticket" ColumnName="fk_ticket" />
                 <ScalarProperty Name="fk_users_bets" ColumnName="fk_users_bets" />
                 <ScalarProperty Name="fk_giveaway" ColumnName="fk_giveaway" />
@@ -2040,7 +1868,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users_bets">
-            <EntityTypeMapping TypeName="CSGOModel.users_bets">
+            <EntityTypeMapping TypeName="DBModel.users_bets">
               <MappingFragment StoreEntitySet="users_bets">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="bet_value" ColumnName="bet_value" />
@@ -2051,7 +1879,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users_in_giveaway">
-            <EntityTypeMapping TypeName="CSGOModel.users_in_giveaway">
+            <EntityTypeMapping TypeName="DBModel.users_in_giveaway">
               <MappingFragment StoreEntitySet="users_in_giveaway">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="fk_user" ColumnName="fk_user" />

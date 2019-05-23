@@ -103,20 +103,6 @@ CREATE TABLE `matches` (
 
 -- --------------------------------------------------------
 
---
--- Sukurta duomenų struktūra lentelei `persons`
---
-
-CREATE TABLE `persons` (
-  `id` int(11) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` longtext NOT NULL,
-  `first_name` varchar(30) NOT NULL,
-  `last_name` varchar(30) NOT NULL,
-  `sex` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
 
 --
@@ -139,14 +125,21 @@ CREATE TABLE `place` (
 CREATE TABLE `players` (
   `id` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
+  `password` longtext NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `sex` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `rating` double(40,8) NOT NULL,
   `age` int(11) NOT NULL,
   `country` varchar(30) NOT NULL,
   `assists` int(11) NOT NULL,
   `headshots` int(11) NOT NULL,
   `damage_per_second` double(40,8) NOT NULL,
-  `fk_person` int(11) DEFAULT NULL,
-  `fk_rating` int(11) DEFAULT NULL,
+  `maps_played` int(11) NOT NULL,
+  `round_number` int(11) NOT NULL,
+  `total_kills` int(11) NOT NULL,
+  `total_deaths` int(11) NOT NULL,
   `fk_team` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -164,22 +157,6 @@ CREATE TABLE `programs` (
   `fk_event` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Sukurta duomenų struktūra lentelei `ratings`
---
-
-CREATE TABLE `ratings` (
-  `id` int(11) NOT NULL,
-  `maps_played` int(11) NOT NULL,
-  `round_number` int(11) NOT NULL,
-  `total_kills` int(11) NOT NULL,
-  `total_deaths` int(11) NOT NULL,
-  `kd_ratio` double(40,8) NOT NULL,
-  `fk_team` int(11) DEFAULT NULL,
-  `fk_player` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -216,9 +193,12 @@ CREATE TABLE `teams` (
   `name` varchar(30) NOT NULL,
   `wins` int(11) NOT NULL,
   `defeats` int(11) NOT NULL,
+  `maps_played` int(11) NOT NULL,
+  `round_number` int(11) NOT NULL,
+  `total_kills` int(11) NOT NULL,
+  `total_deaths` int(11) NOT NULL,
   `fk_match` int(11) DEFAULT NULL,
-  `fk_player` int(11) DEFAULT NULL,
-  `fk_rating` int(11) DEFAULT NULL
+  `fk_player` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -257,7 +237,12 @@ CREATE TABLE `tournaments` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `fk_person` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` longtext NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `sex` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `fk_ticket` int(11) DEFAULT NULL,
   `fk_users_bets` int(11) DEFAULT NULL,
   `fk_giveaway` int(11) DEFAULT NULL,
@@ -340,12 +325,6 @@ ALTER TABLE `matches`
   ADD KEY `has10` (`fk_ticket`);
 
 --
--- Indexes for table `persons`
---
-ALTER TABLE `persons`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `place`
 --
 ALTER TABLE `place`
@@ -358,8 +337,6 @@ ALTER TABLE `place`
 --
 ALTER TABLE `players`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `belongs1` (`fk_person`),
-  ADD KEY `has` (`fk_rating`),
   ADD KEY `belongs5` (`fk_team`);
 
 --
@@ -369,14 +346,6 @@ ALTER TABLE `programs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `has18` (`fk_event`),
   ADD KEY `has17` (`fk_tournament`);
-
---
--- Indexes for table `ratings`
---
-ALTER TABLE `ratings`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `has19` (`fk_team`),
-  ADD KEY `has20` (`fk_player`);
 
 --
 -- Indexes for table `skins`
@@ -399,8 +368,7 @@ ADD PRIMARY KEY (`id`),
 ALTER TABLE `teams`
   ADD PRIMARY KEY (`id`),
   ADD KEY `has22` (`fk_match`),
-  ADD KEY `has23` (`fk_player`),
-  ADD KEY `has24` (`fk_rating`);
+  ADD KEY `has23` (`fk_player`);
 
 --
 -- Indexes for table `tickets`
@@ -424,7 +392,6 @@ ALTER TABLE `tournaments`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD KEY `has3` (`fk_ticket`),
-  ADD KEY `belongs` (`fk_person`),
   ADD KEY `has28` (`fk_giveaway`),
   ADD KEY `has29` (`fk_evaluation`),
   ADD KEY `has30` (`fk_users_bets`),
@@ -475,12 +442,6 @@ ALTER TABLE `matches`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `persons`
---
-ALTER TABLE `persons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `place`
 --
 ALTER TABLE `place`
@@ -498,11 +459,6 @@ ALTER TABLE `players`
 ALTER TABLE `programs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `ratings`
---
-ALTER TABLE `ratings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `skins`
@@ -598,9 +554,7 @@ ALTER TABLE `place`
 -- Apribojimai lentelei `players`
 --
 ALTER TABLE `players`
-  ADD CONSTRAINT `belongs1` FOREIGN KEY (`fk_person`) REFERENCES `persons` (`id`),
-  ADD CONSTRAINT `belongs5` FOREIGN KEY (`fk_team`) REFERENCES `teams` (`id`),
-  ADD CONSTRAINT `has` FOREIGN KEY (`fk_rating`) REFERENCES `ratings` (`id`);
+  ADD CONSTRAINT `belongs5` FOREIGN KEY (`fk_team`) REFERENCES `teams` (`id`);
 
 
 ALTER table `programs`
@@ -616,8 +570,7 @@ ALTER TABLE `skins_in_giveaway`
 
 ALTER table `teams`
 ADD CONSTRAINT `has22` FOREIGN KEY (`fk_match`) REFERENCES `matches` (`id`),
-ADD CONSTRAINT `has23` FOREIGN KEY (`fk_player`) REFERENCES `players` (`id`),
-ADD CONSTRAINT `has24` FOREIGN KEY (`fk_rating`) REFERENCES `ratings` (`id`);
+ADD CONSTRAINT `has23` FOREIGN KEY (`fk_player`) REFERENCES `players` (`id`);
 --
 -- Apribojimai lentelei `tournaments`
 --
@@ -631,7 +584,6 @@ ALTER TABLE `tournaments`
 -- Apribojimai lentelei `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `belongs` FOREIGN KEY (`fk_person`) REFERENCES `persons` (`id`),
   ADD CONSTRAINT `has3` FOREIGN KEY (`fk_ticket`) REFERENCES `tickets` (`id`),
   ADD CONSTRAINT `has28` FOREIGN KEY (`fk_giveaway`) REFERENCES `giveaways` (`id`),
   ADD CONSTRAINT `has29` FOREIGN KEY (`fk_evaluation`) REFERENCES `evaluation` (`id`),

@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F1CCC93C-C40A-46E4-8F6A-9FD4BE13BE0E}</ProjectGuid>
+    <ProjectGuid>{61601146-5F77-44E7-8265-D9E996A8CE48}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -139,16 +139,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\bettingsController.cs" />
-    <Compile Include="Controllers\giveawaysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\matchesController.cs" />
-    <Compile Include="Controllers\placesController.cs" />
-    <Compile Include="Controllers\playersController.cs" />
-    <Compile Include="Controllers\programsController.cs" />
-    <Compile Include="Controllers\skinsController.cs" />
-    <Compile Include="Controllers\teamsController.cs" />
-    <Compile Include="Controllers\ticketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,9 +173,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\person.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\place.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -192,9 +180,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\program.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\rating.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\skin.cs">
@@ -276,51 +261,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\bettings\Create.cshtml" />
-    <Content Include="Views\bettings\Delete.cshtml" />
-    <Content Include="Views\bettings\Details.cshtml" />
-    <Content Include="Views\bettings\Edit.cshtml" />
-    <Content Include="Views\bettings\Index.cshtml" />
-    <Content Include="Views\skins\Create.cshtml" />
-    <Content Include="Views\skins\Delete.cshtml" />
-    <Content Include="Views\skins\Details.cshtml" />
-    <Content Include="Views\skins\Edit.cshtml" />
-    <Content Include="Views\skins\Index.cshtml" />
-    <Content Include="Views\giveaways\Create.cshtml" />
-    <Content Include="Views\giveaways\Delete.cshtml" />
-    <Content Include="Views\giveaways\Details.cshtml" />
-    <Content Include="Views\giveaways\Edit.cshtml" />
-    <Content Include="Views\giveaways\Index.cshtml" />
-    <Content Include="Views\matches\Create.cshtml" />
-    <Content Include="Views\matches\Delete.cshtml" />
-    <Content Include="Views\matches\Details.cshtml" />
-    <Content Include="Views\matches\Edit.cshtml" />
-    <Content Include="Views\matches\Index.cshtml" />
-    <Content Include="Views\players\Create.cshtml" />
-    <Content Include="Views\players\Delete.cshtml" />
-    <Content Include="Views\players\Details.cshtml" />
-    <Content Include="Views\players\Edit.cshtml" />
-    <Content Include="Views\players\Index.cshtml" />
-    <Content Include="Views\teams\Create.cshtml" />
-    <Content Include="Views\teams\Delete.cshtml" />
-    <Content Include="Views\teams\Details.cshtml" />
-    <Content Include="Views\teams\Edit.cshtml" />
-    <Content Include="Views\teams\Index.cshtml" />
-    <Content Include="Views\programs\Create.cshtml" />
-    <Content Include="Views\programs\Delete.cshtml" />
-    <Content Include="Views\programs\Details.cshtml" />
-    <Content Include="Views\programs\Edit.cshtml" />
-    <Content Include="Views\programs\Index.cshtml" />
-    <Content Include="Views\tickets\Create.cshtml" />
-    <Content Include="Views\tickets\Delete.cshtml" />
-    <Content Include="Views\tickets\Details.cshtml" />
-    <Content Include="Views\tickets\Edit.cshtml" />
-    <Content Include="Views\tickets\Index.cshtml" />
-    <Content Include="Views\places\Create.cshtml" />
-    <Content Include="Views\places\Delete.cshtml" />
-    <Content Include="Views\places\Details.cshtml" />
-    <Content Include="Views\places\Edit.cshtml" />
-    <Content Include="Views\places\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -357,9 +297,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58344</DevelopmentServerPort>
+          <DevelopmentServerPort>64818</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:58344/</IISUrl>
+          <IISUrl>http://localhost:64818/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
