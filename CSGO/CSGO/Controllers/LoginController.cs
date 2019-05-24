@@ -33,6 +33,7 @@ namespace CSGO.Controllers
 						Session["Id"] = obj.id;
 						Session["userName"] = obj.username.ToString();
 						Session["userLevel"] = obj.userLevel;
+						Session["registeredGiveaway"] = obj.fk_giveaway;
 
 						if (obj.userLevel == 1)
 							return RedirectToAction("UserDashBoard");
@@ -50,17 +51,19 @@ namespace CSGO.Controllers
 			Session.Remove("Id");
 			Session.Remove("userName");
 			Session.Remove("userLevel");
-			return RedirectToAction("Index","Home");
+			Session.Remove("registeredGiveaway");
+			return RedirectToAction("Login","Login");
 		}
 
 		public ActionResult DashBoard()
 		{
-			if ((int)Session["ID"] == 1)
+			if ((int)Session["userLevel"] == 1)
 			{
 				return RedirectToAction("UserDashBoard");
 			}
 			else
 			{
+				Session.Remove("GiveawayID");
 				return RedirectToAction("AdminDashBoard");
 			}
 		}

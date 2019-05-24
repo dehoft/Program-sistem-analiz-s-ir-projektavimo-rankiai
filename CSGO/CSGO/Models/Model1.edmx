@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bettings">
           <Key>
             <PropertyRef Name="id" />
@@ -78,8 +78,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="password" Type="longtext" Nullable="false" />
           <Property Name="first_name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="last_name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="sex" Type="varchar" MaxLength="20" Nullable="false" />
@@ -105,6 +103,15 @@
           <Property Name="description" Type="longtext" Nullable="false" />
           <Property Name="fk_tournament" Type="int" />
           <Property Name="fk_event" Type="int" />
+        </EntityType>
+        <EntityType Name="referrals">
+          <Key>
+            <PropertyRef Name="referral" />
+          </Key>
+          <Property Name="referral" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
+          <Property Name="fk_user" Type="int" Nullable="false" />
+          <Property Name="fk_giveaway" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="skins">
           <Key>
@@ -517,6 +524,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="has35">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="referrals" Type="Self.referrals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="referrals">
+              <PropertyRef Name="fk_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="has36">
+          <End Role="giveaways" Type="Self.giveaways" Multiplicity="1" />
+          <End Role="referrals" Type="Self.referrals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="giveaways">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="referrals">
+              <PropertyRef Name="fk_giveaway" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="has4">
           <End Role="programs" Type="Self.programs" Multiplicity="0..1" />
           <End Role="eventts" Type="Self.eventts" Multiplicity="*" />
@@ -646,6 +677,7 @@
           <EntitySet Name="place" EntityType="Self.place" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="players" EntityType="Self.players" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="programs" EntityType="Self.programs" Schema="projektas" store:Type="Tables" />
+          <EntitySet Name="referrals" EntityType="Self.referrals" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="skins" EntityType="Self.skins" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="skins_in_giveaway" EntityType="Self.skins_in_giveaway" Schema="projektas" store:Type="Tables" />
           <EntitySet Name="teams" EntityType="Self.teams" Schema="projektas" store:Type="Tables" />
@@ -762,6 +794,14 @@
             <End Role="tickets" EntitySet="tickets" />
             <End Role="matches" EntitySet="matches" />
           </AssociationSet>
+          <AssociationSet Name="has35" Association="Self.has35">
+            <End Role="users" EntitySet="users" />
+            <End Role="referrals" EntitySet="referrals" />
+          </AssociationSet>
+          <AssociationSet Name="has36" Association="Self.has36">
+            <End Role="giveaways" EntitySet="giveaways" />
+            <End Role="referrals" EntitySet="referrals" />
+          </AssociationSet>
           <AssociationSet Name="has4" Association="Self.has4">
             <End Role="programs" EntitySet="programs" />
             <End Role="eventts" EntitySet="eventts" />
@@ -803,8 +843,7 @@
             <End Role="place" EntitySet="place" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -866,6 +905,7 @@
           <NavigationProperty Name="skins_in_giveaway1" Relationship="Self.has2" FromRole="giveaways" ToRole="skins_in_giveaway" />
           <NavigationProperty Name="users" Relationship="Self.has28" FromRole="giveaways" ToRole="users" />
           <NavigationProperty Name="users_in_giveaway1" Relationship="Self.has9" FromRole="giveaways" ToRole="users_in_giveaway" />
+          <NavigationProperty Name="referrals" Relationship="DBModel.has36" FromRole="giveaway" ToRole="referral" />
         </EntityType>
         <EntityType Name="match">
           <Key>
@@ -913,8 +953,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="sex" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1044,6 +1082,7 @@
           <NavigationProperty Name="users_bets" Relationship="Self.bets" FromRole="users" ToRole="users_bets" />
           <NavigationProperty Name="users_bets1" Relationship="Self.has30" FromRole="users" ToRole="users_bets" />
           <NavigationProperty Name="users_in_giveaway" Relationship="Self.has8" FromRole="users" ToRole="users_in_giveaway" />
+          <NavigationProperty Name="referrals" Relationship="DBModel.has35" FromRole="user" ToRole="referral" />
         </EntityType>
         <EntityType Name="users_bets">
           <Key>
@@ -1679,7 +1718,51 @@
             <End Role="users" EntitySet="users" />
             <End Role="users_in_giveaway" EntitySet="users_in_giveaway" />
           </AssociationSet>
+          <EntitySet Name="referrals" EntityType="DBModel.referral" />
+          <AssociationSet Name="has36" Association="DBModel.has36">
+            <End Role="giveaway" EntitySet="giveaways" />
+            <End Role="referral" EntitySet="referrals" />
+          </AssociationSet>
+          <AssociationSet Name="has35" Association="DBModel.has35">
+            <End Role="user" EntitySet="users" />
+            <End Role="referral" EntitySet="referrals" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="referral">
+          <Key>
+            <PropertyRef Name="referral1" />
+          </Key>
+          <Property Name="referral1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+          <Property Name="fk_user" Type="Int32" Nullable="false" />
+          <Property Name="fk_giveaway" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="giveaway" Relationship="DBModel.has36" FromRole="referral" ToRole="giveaway" />
+          <NavigationProperty Name="user" Relationship="DBModel.has35" FromRole="referral" ToRole="user" />
+        </EntityType>
+        <Association Name="has36">
+          <End Type="DBModel.giveaway" Role="giveaway" Multiplicity="1" />
+          <End Type="DBModel.referral" Role="referral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="giveaway">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="referral">
+              <PropertyRef Name="fk_giveaway" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="has35">
+          <End Type="DBModel.user" Role="user" Multiplicity="1" />
+          <End Type="DBModel.referral" Role="referral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="referral">
+              <PropertyRef Name="fk_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1764,8 +1847,6 @@
             <EntityTypeMapping TypeName="DBModel.player">
               <MappingFragment StoreEntitySet="players">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
                 <ScalarProperty Name="sex" ColumnName="sex" />
@@ -1854,10 +1935,10 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="DBModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="userLevel" ColumnName="userLevel" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="userLevel" ColumnName="userLevel" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
                 <ScalarProperty Name="sex" ColumnName="sex" />
@@ -1887,6 +1968,16 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="fk_user" ColumnName="fk_user" />
                 <ScalarProperty Name="fk_giveaway" ColumnName="fk_giveaway" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="referrals">
+            <EntityTypeMapping TypeName="DBModel.referral">
+              <MappingFragment StoreEntitySet="referrals">
+                <ScalarProperty Name="fk_giveaway" ColumnName="fk_giveaway" />
+                <ScalarProperty Name="fk_user" ColumnName="fk_user" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="referral1" ColumnName="referral" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -139,11 +139,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BettingsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\bettingsController.cs" />
     <Compile Include="Controllers\GiveawaysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SkinsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +185,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\program.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\referral.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\skin.cs">
@@ -265,11 +269,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\bettings\Create.cshtml" />
-    <Content Include="Views\bettings\Delete.cshtml" />
-    <Content Include="Views\bettings\Details.cshtml" />
-    <Content Include="Views\bettings\Edit.cshtml" />
-    <Content Include="Views\bettings\Index.cshtml" />
     <Content Include="Views\Giveaways\Create.cshtml" />
     <Content Include="Views\Giveaways\Delete.cshtml" />
     <Content Include="Views\Giveaways\Details.cshtml" />
@@ -284,6 +283,17 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\UserDashBoard.cshtml" />
     <Content Include="Views\Login\AdminDashBoard.cshtml" />
+    <Content Include="Views\Giveaways\Register.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Bettings\Create.cshtml" />
+    <Content Include="Views\Bettings\Delete.cshtml" />
+    <Content Include="Views\Bettings\Details.cshtml" />
+    <Content Include="Views\Bettings\Edit.cshtml" />
+    <Content Include="Views\Bettings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

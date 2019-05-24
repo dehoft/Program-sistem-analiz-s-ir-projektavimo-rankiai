@@ -9,9 +9,10 @@
 	{
 		<text>Welcome @Session["userName"].ToString() </text>
 
-		<ul>
-			<li>@Html.ActionLink("Giveaways", "Index", "Giveaways")</li>
-			<li>@Html.ActionLink("Skins", "Index", "Skins")</li>
-		</ul>
+	<ul>
+		<li>@Html.ActionLink("Account", "Details", "Users")</li>
+		<li>@Html.ActionLink("Giveaways", "Index", "Giveaways")</li>
+		<li>@Html.ActionLink("Skins", "Index", "Skins")</li>
+	</ul>
 	}
 </fieldset>

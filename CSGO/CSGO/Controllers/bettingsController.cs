@@ -10,18 +10,18 @@ using CSGO.Models;
 
 namespace CSGO.Controllers
 {
-    public class bettingsController : Controller
+    public class BettingsController : Controller
     {
         private dbEntities db = new dbEntities();
 
-        // GET: bettings
+        // GET: Bettings
         public ActionResult Index()
         {
             var bettings = db.bettings.Include(b => b.users_bets).Include(b => b.match);
             return View(bettings.ToList());
         }
 
-        // GET: bettings/Details/5
+        // GET: Bettings/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +36,7 @@ namespace CSGO.Controllers
             return View(betting);
         }
 
-        // GET: bettings/Create
+        // GET: Bettings/Create
         public ActionResult Create()
         {
             ViewBag.fk_users_bets = new SelectList(db.users_bets, "id", "id");
@@ -44,7 +44,7 @@ namespace CSGO.Controllers
             return View();
         }
 
-        // POST: bettings/Create
+        // POST: Bettings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -63,7 +63,7 @@ namespace CSGO.Controllers
             return View(betting);
         }
 
-        // GET: bettings/Edit/5
+        // GET: Bettings/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,7 +80,7 @@ namespace CSGO.Controllers
             return View(betting);
         }
 
-        // POST: bettings/Edit/5
+        // POST: Bettings/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -98,7 +98,7 @@ namespace CSGO.Controllers
             return View(betting);
         }
 
-        // GET: bettings/Delete/5
+        // GET: Bettings/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +113,7 @@ namespace CSGO.Controllers
             return View(betting);
         }
 
-        // POST: bettings/Delete/5
+        // POST: Bettings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

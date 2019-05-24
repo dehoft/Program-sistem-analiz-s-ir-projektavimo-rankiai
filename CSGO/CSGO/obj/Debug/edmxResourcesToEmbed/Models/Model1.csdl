@@ -58,6 +58,7 @@
     <NavigationProperty Name="skins_in_giveaway1" Relationship="Self.has2" FromRole="giveaways" ToRole="skins_in_giveaway" />
     <NavigationProperty Name="users" Relationship="Self.has28" FromRole="giveaways" ToRole="users" />
     <NavigationProperty Name="users_in_giveaway1" Relationship="Self.has9" FromRole="giveaways" ToRole="users_in_giveaway" />
+    <NavigationProperty Name="referrals" Relationship="DBModel.has36" FromRole="giveaway" ToRole="referral" />
   </EntityType>
   <EntityType Name="match">
     <Key>
@@ -105,8 +106,6 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="sex" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
@@ -236,6 +235,7 @@
     <NavigationProperty Name="users_bets" Relationship="Self.bets" FromRole="users" ToRole="users_bets" />
     <NavigationProperty Name="users_bets1" Relationship="Self.has30" FromRole="users" ToRole="users_bets" />
     <NavigationProperty Name="users_in_giveaway" Relationship="Self.has8" FromRole="users" ToRole="users_in_giveaway" />
+    <NavigationProperty Name="referrals" Relationship="DBModel.has35" FromRole="user" ToRole="referral" />
   </EntityType>
   <EntityType Name="users_bets">
     <Key>
@@ -871,5 +871,49 @@
       <End Role="users" EntitySet="users" />
       <End Role="users_in_giveaway" EntitySet="users_in_giveaway" />
     </AssociationSet>
+    <EntitySet Name="referrals" EntityType="DBModel.referral" />
+    <AssociationSet Name="has36" Association="DBModel.has36">
+      <End Role="giveaway" EntitySet="giveaways" />
+      <End Role="referral" EntitySet="referrals" />
+    </AssociationSet>
+    <AssociationSet Name="has35" Association="DBModel.has35">
+      <End Role="user" EntitySet="users" />
+      <End Role="referral" EntitySet="referrals" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="referral">
+    <Key>
+      <PropertyRef Name="referral1" />
+    </Key>
+    <Property Name="referral1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="count" Type="Int32" Nullable="false" />
+    <Property Name="fk_user" Type="Int32" Nullable="false" />
+    <Property Name="fk_giveaway" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="giveaway" Relationship="DBModel.has36" FromRole="referral" ToRole="giveaway" />
+    <NavigationProperty Name="user" Relationship="DBModel.has35" FromRole="referral" ToRole="user" />
+  </EntityType>
+  <Association Name="has36">
+    <End Type="DBModel.giveaway" Role="giveaway" Multiplicity="1" />
+    <End Type="DBModel.referral" Role="referral" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="giveaway">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="referral">
+        <PropertyRef Name="fk_giveaway" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has35">
+    <End Type="DBModel.user" Role="user" Multiplicity="1" />
+    <End Type="DBModel.referral" Role="referral" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="referral">
+        <PropertyRef Name="fk_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

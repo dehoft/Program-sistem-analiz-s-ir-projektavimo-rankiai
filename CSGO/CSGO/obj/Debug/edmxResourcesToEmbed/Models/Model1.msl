@@ -79,8 +79,6 @@
       <EntityTypeMapping TypeName="DBModel.player">
         <MappingFragment StoreEntitySet="players">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="first_name" ColumnName="first_name" />
           <ScalarProperty Name="last_name" ColumnName="last_name" />
           <ScalarProperty Name="sex" ColumnName="sex" />
@@ -169,10 +167,10 @@
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="DBModel.user">
         <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="userLevel" ColumnName="userLevel" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="userLevel" ColumnName="userLevel" />
           <ScalarProperty Name="first_name" ColumnName="first_name" />
           <ScalarProperty Name="last_name" ColumnName="last_name" />
           <ScalarProperty Name="sex" ColumnName="sex" />
@@ -202,6 +200,16 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="fk_user" ColumnName="fk_user" />
           <ScalarProperty Name="fk_giveaway" ColumnName="fk_giveaway" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="referrals">
+      <EntityTypeMapping TypeName="DBModel.referral">
+        <MappingFragment StoreEntitySet="referrals">
+          <ScalarProperty Name="fk_giveaway" ColumnName="fk_giveaway" />
+          <ScalarProperty Name="fk_user" ColumnName="fk_user" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="referral1" ColumnName="referral" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

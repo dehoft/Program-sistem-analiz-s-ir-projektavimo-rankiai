@@ -73,8 +73,6 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="password" Type="longtext" Nullable="false" />
     <Property Name="first_name" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="last_name" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="sex" Type="varchar" MaxLength="20" Nullable="false" />
@@ -100,6 +98,15 @@
     <Property Name="description" Type="longtext" Nullable="false" />
     <Property Name="fk_tournament" Type="int" />
     <Property Name="fk_event" Type="int" />
+  </EntityType>
+  <EntityType Name="referrals">
+    <Key>
+      <PropertyRef Name="referral" />
+    </Key>
+    <Property Name="referral" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="count" Type="int" Nullable="false" />
+    <Property Name="fk_user" Type="int" Nullable="false" />
+    <Property Name="fk_giveaway" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="skins">
     <Key>
@@ -512,6 +519,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="has35">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="referrals" Type="Self.referrals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="referrals">
+        <PropertyRef Name="fk_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has36">
+    <End Role="giveaways" Type="Self.giveaways" Multiplicity="1" />
+    <End Role="referrals" Type="Self.referrals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="giveaways">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="referrals">
+        <PropertyRef Name="fk_giveaway" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="has4">
     <End Role="programs" Type="Self.programs" Multiplicity="0..1" />
     <End Role="eventts" Type="Self.eventts" Multiplicity="*" />
@@ -641,6 +672,7 @@
     <EntitySet Name="place" EntityType="Self.place" Schema="projektas" store:Type="Tables" />
     <EntitySet Name="players" EntityType="Self.players" Schema="projektas" store:Type="Tables" />
     <EntitySet Name="programs" EntityType="Self.programs" Schema="projektas" store:Type="Tables" />
+    <EntitySet Name="referrals" EntityType="Self.referrals" Schema="projektas" store:Type="Tables" />
     <EntitySet Name="skins" EntityType="Self.skins" Schema="projektas" store:Type="Tables" />
     <EntitySet Name="skins_in_giveaway" EntityType="Self.skins_in_giveaway" Schema="projektas" store:Type="Tables" />
     <EntitySet Name="teams" EntityType="Self.teams" Schema="projektas" store:Type="Tables" />
@@ -756,6 +788,14 @@
     <AssociationSet Name="has33" Association="Self.has33">
       <End Role="tickets" EntitySet="tickets" />
       <End Role="matches" EntitySet="matches" />
+    </AssociationSet>
+    <AssociationSet Name="has35" Association="Self.has35">
+      <End Role="users" EntitySet="users" />
+      <End Role="referrals" EntitySet="referrals" />
+    </AssociationSet>
+    <AssociationSet Name="has36" Association="Self.has36">
+      <End Role="giveaways" EntitySet="giveaways" />
+      <End Role="referrals" EntitySet="referrals" />
     </AssociationSet>
     <AssociationSet Name="has4" Association="Self.has4">
       <End Role="programs" EntitySet="programs" />

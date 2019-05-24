@@ -77,8 +77,8 @@ C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\System.Web.WebPa
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\Newtonsoft.Json.xml
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\Antlr3.Runtime.pdb
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.csprojAssemblyReference.cache
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.csproj.CoreCompileInputs.cache
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.csproj.CopyComplete
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.dll
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.pdb
+C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.csprojAssemblyReference.cache

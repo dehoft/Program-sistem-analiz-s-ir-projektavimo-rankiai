@@ -20,6 +20,7 @@ namespace CSGO.Models
             this.skins_in_giveaway1 = new HashSet<skins_in_giveaway>();
             this.users = new HashSet<user>();
             this.users_in_giveaway1 = new HashSet<users_in_giveaway>();
+            this.referrals = new HashSet<referral>();
         }
     
         public int id { get; set; }
@@ -37,5 +38,7 @@ namespace CSGO.Models
         public virtual ICollection<user> users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<users_in_giveaway> users_in_giveaway1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<referral> referrals { get; set; }
     }
 }

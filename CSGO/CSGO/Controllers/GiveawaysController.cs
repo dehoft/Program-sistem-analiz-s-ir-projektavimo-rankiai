@@ -145,8 +145,49 @@ namespace CSGO.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Session["RemoveSkinId"] = id;
-			return RedirectToAction("Remove", "Skins");
+			return RedirectToAction("Remove", "Skins", new { id=id});
+		}
+
+		// GET: Giveaways/Show/5
+		public ActionResult Show(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			return RedirectToAction("Details", "Skins", new { id=id});
+		}
+
+		// GET: Giveaways/Register/5
+		public ActionResult Register(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			giveaway giveaway = db.giveaways.Find(id);
+			if (giveaway == null)
+			{
+				return HttpNotFound();
+			}
+			return View(giveaway);
+		}
+
+		// POST: Giveaways/Register/5
+		[HttpPost, ActionName("Register")]
+		[ValidateAntiForgeryToken]
+		public ActionResult RegisterConfirmed(int id)
+		{
+			users_in_giveaway users_in_giveaway = new users_in_giveaway();
+			users_in_giveaway.fk_giveaway = id;
+			users_in_giveaway.fk_user = (int)Session["Id"];
+			user user = db.users.Find((int)Session["Id"]);
+			user.fk_giveaway = id;
+			db.Entry(user).State = EntityState.Modified;
+			db.SaveChanges();
+			db.users_in_giveaway.Add(users_in_giveaway);
+			db.SaveChanges();
+			return RedirectToAction("Index");
 		}
 
 		protected override void Dispose(bool disposing)

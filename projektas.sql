@@ -227,6 +227,13 @@ CREATE TABLE `tournaments` (
   `fk_program` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+CREATE TABLE `referrals`(
+	`referral` varchar(30) NOT NULL,
+	`count` int(11) NOT NULL,
+	`fk_user` int(11) NOT NULL,
+	`fk_giveaway` int(11) NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
 -- --------------------------------------------------------
 
 --
@@ -237,7 +244,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` longtext NOT NULL,
-  `userlevel` int(11) NOT NULL DEFAULT `1`,
+  `userLevel` int(11) NOT NULL DEFAULT '1',
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `sex` varchar(20) NOT NULL,
@@ -404,6 +411,10 @@ ALTER TABLE `users_bets`
   ADD KEY `bets` (`fk_user`),
   ADD KEY `has32` (`fk_betting`);
 
+ALTER TABLE `referrals`
+  ADD PRIMARY KEY (`referral`),
+  ADD KEY `has35` (`fk_user`),
+  ADD KEY `has36` (`fk_giveaway`);
 --
 -- Indexes for table `users_in_giveaway`
 --
@@ -596,6 +607,9 @@ ALTER TABLE `users_bets`
   ADD CONSTRAINT `bets` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `has32` FOREIGN KEY (`fk_betting`) REFERENCES `bettings` (`id`);
 
+ALTER TABLE `referrals`
+  ADD CONSTRAINT `has35` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `has36` FOREIGN KEY (`fk_giveaway`) REFERENCES `giveaways` (`id`);
 --
 -- Apribojimai lentelei `users_in_giveaway`
 --

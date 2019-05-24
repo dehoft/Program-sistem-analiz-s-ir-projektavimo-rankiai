@@ -145,9 +145,8 @@ namespace CSGO.Controllers
 			return RedirectToAction("Index");
 		}
 
-		public ActionResult Remove()
+		public ActionResult Remove(int? id)
 		{
-			int id = (int)Session["RemoveSkinId"];
 			skins_in_giveaway skins_in_giveaway = db.skins_in_giveaway.Find(id);
 
 			if (skins_in_giveaway == null)
@@ -157,7 +156,6 @@ namespace CSGO.Controllers
 
 			db.skins_in_giveaway.Remove(skins_in_giveaway);
 			db.SaveChanges();
-			Session.Remove("RemoveSkinId");
 			return RedirectToAction("Index", "Giveaways");
 		}
 

@@ -33,23 +33,72 @@
 		<dd>
 			@Html.DisplayFor(model => model.end_time)
 		</dd>
+		@if (Model.skins_in_giveaway1.Count != 0)
+		{
 		<dt>
 			@Html.DisplayNameFor(model => model.skins_in_giveaway.skin)
 		</dt>
-
+		}
 		@foreach (var item in Model.skins_in_giveaway1.ToList())
 		{
-		<td>
-			@Html.DisplayFor(modelitem => item.skin.name)
-			@Html.ActionLink("Remove", "Remove", new { id = item.id })
-		</td>
-		}
+			<dd>
+				@Html.DisplayFor(modelitem => item.skin.name)
+				@Html.ActionLink("Details", "Show", new { id = item.skin.id })
+				@if (Session["userLevel"] != null)
+				{
+					if ((int)Session["userLevel"] == 2)
+					{
+						@Html.ActionLink("Remove ", "Remove", new { id = item.id })
+					}
+				}
 
+			</dd>
+		}
+		@if (Session["userLevel"] != null)
+		{
+			if ((int)Session["userlevel"] == 2)
+			{
+				if (Model.users_in_giveaway1.Count != 0)
+				{
+				<dt>
+					Registered user(s)
+				</dt>
+				}
+				foreach (var item in Model.users_in_giveaway1.ToList())
+				{
+					<dd>
+						@Html.DisplayFor(modelitem => item.user.first_name)
+						@Html.DisplayFor(modelitem => item.user.last_name)
+					</dd>
+				}
+			}
+		}
 		</dl>
 </div>
 <p>
-	@Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-	@Html.ActionLink("Back to List", "Index") |
-	@Html.ActionLink("Skins", "Add", new { id = Model.id })
+	@Html.ActionLink("Back to List", "Index")
 
+	@if (Session["userLevel"] != null)
+	{
+		if ((int)Session["userLevel"] == 2)
+		{
+			@Html.ActionLink("Edit ", "Edit", new { id = Model.id })
+			@Html.ActionLink("Skins", "Add", new { id = Model.id })
+		}
+		else
+		{
+			var boo = true;
+			foreach (var item in Model.users_in_giveaway1.ToList())
+			{
+				if (item.fk_giveaway == Model.id && item.fk_user == (int)Session["Id"])
+				{
+					boo = false;
+				}
+			}
+			if (boo)
+			{
+				@Html.ActionLink("Register", "Register", new { id = Model.id })
+			}
+		}
+	}
 </p>

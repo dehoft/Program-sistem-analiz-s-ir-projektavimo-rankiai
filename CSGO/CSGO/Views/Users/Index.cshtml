@@ -1,0 +1,99 @@
+﻿@model IEnumerable<CSGO.Models.user>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.evaluation.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giveaway.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.place.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ticket.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.users_bets1.id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.evaluation.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giveaway.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.place.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ticket.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users_bets1.id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
