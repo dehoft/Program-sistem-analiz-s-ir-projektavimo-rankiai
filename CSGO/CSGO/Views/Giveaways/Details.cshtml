@@ -76,8 +76,6 @@
 		</dl>
 </div>
 <p>
-	@Html.ActionLink("Back to List", "Index")
-
 	@if (Session["userLevel"] != null)
 	{
 		if ((int)Session["userLevel"] == 2)
@@ -97,8 +95,28 @@
 			}
 			if (boo)
 			{
-				@Html.ActionLink("Register", "Register", new { id = Model.id })
+				@Html.ActionLink("Register", "Register", new { id = Model.id }) 
+			}
+			else
+			{
+				boo = true;
+				foreach (var item in Model.referrals.ToList())
+				{
+					if (item.referral1 == (string)Session["userName"]+Model.id)
+					{
+
+						@Html.Label("Referral link")
+						@Html.EditorFor(model => item.referralLink, new { htmlAttributes = new { @class = "form-control" } })
+						boo = false;
+						break;
+					}
+				}
+				if (boo)
+				{
+					@Html.ActionLink("Generate Link", "Generate", new { id = Model.id })
+				}
 			}
 		}
 	}
+	@Html.ActionLink("Back to List", "Index")
 </p>

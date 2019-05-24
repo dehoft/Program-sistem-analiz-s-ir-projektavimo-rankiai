@@ -190,6 +190,23 @@ namespace CSGO.Controllers
 			return RedirectToAction("Index");
 		}
 
+		// GET: Giveaways/Generate/5
+		public ActionResult Generate(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			referral referral = new referral();
+			referral.fk_giveaway = (int)id;
+			referral.fk_user = (int)Session["Id"];
+			referral.count = 0;
+			referral.referral1 = (string)Session["userName"]+ id;
+			db.referrals.Add(referral);
+			db.SaveChanges();
+			return RedirectToAction("Details", "Giveaways", new { id = id });
+		}
+
 		protected override void Dispose(bool disposing)
         {
             if (disposing)
