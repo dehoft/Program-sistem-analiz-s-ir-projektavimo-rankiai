@@ -1,0 +1,138 @@
+﻿@model CSGO.Models.player
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Player details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.last_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assists)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assists)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.headshots)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.headshots)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.damage_per_second)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.damage_per_second)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maps_played)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maps_played)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.round_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.round_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total_kills)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total_kills)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total_deaths)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total_deaths)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.team.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.team.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "TeamPage") |
+    @Html.ActionLink("Player list", "Index")
+</p>
