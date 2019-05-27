@@ -8,9 +8,13 @@
 	@if (Session["ID"] != null)
 	{
 		<text>Welcome @Session["userName"].ToString() </text>
-		<ul>
-			<li>@Html.ActionLink("Giveaways", "Index", "Giveaways")</li>
-			<li>@Html.ActionLink("Skins", "Index", "Skins")</li>
-		</ul>
+	<ul>
+		<li>@Html.ActionLink("Giveaways", "Index", "Giveaways")</li>
+		<li>@Html.ActionLink("Skins", "Index", "Skins")</li>
+		<li>@Html.ActionLink("Tournaments", "Index", "Tournaments")</li>
+		<li>@Html.ActionLink("Events", "Index", "Events")</li>
+		<li>@Html.ActionLink("Programs", "Index", "Programs")</li>
+		<li>@Html.ActionLink("Matches", "Index", "Matches")</li>
+	</ul>
 	}
 </fieldset>

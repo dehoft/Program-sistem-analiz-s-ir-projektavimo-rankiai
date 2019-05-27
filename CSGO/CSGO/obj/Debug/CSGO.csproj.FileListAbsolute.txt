@@ -81,7 +81,6 @@ C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.cspro
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.csproj.CopyComplete
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.dll
 C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.pdb
-C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.csprojAssemblyReference.cache
 B:\Documents\Github\Sistemu_analize\CSGO\CSGO\bin\CSGO.dll.config
 B:\Documents\Github\Sistemu_analize\CSGO\CSGO\bin\CSGO.dll
 B:\Documents\Github\Sistemu_analize\CSGO\CSGO\bin\CSGO.pdb

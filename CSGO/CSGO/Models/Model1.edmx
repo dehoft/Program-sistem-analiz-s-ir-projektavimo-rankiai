@@ -159,6 +159,8 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="start_time" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="end_time" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="fk_event" Type="int" />
           <Property Name="fk_match" Type="int" />
           <Property Name="fk_evaluation" Type="int" />
@@ -1055,6 +1057,8 @@
           <NavigationProperty Name="match" Relationship="Self.has25" FromRole="tournaments" ToRole="matches" />
           <NavigationProperty Name="programs" Relationship="Self.has17" FromRole="tournaments" ToRole="programs" />
           <NavigationProperty Name="program" Relationship="Self.has27" FromRole="tournaments" ToRole="programs" />
+          <Property Name="start_time" Type="DateTime" Nullable="false" />
+          <Property Name="end_time" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -1922,6 +1926,8 @@
           <EntitySetMapping Name="tournaments">
             <EntityTypeMapping TypeName="DBModel.tournament">
               <MappingFragment StoreEntitySet="tournaments">
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="type" ColumnName="type" />

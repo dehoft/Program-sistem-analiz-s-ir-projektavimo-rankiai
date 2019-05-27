@@ -154,6 +154,8 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="type" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="start_time" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="end_time" Type="datetime" Precision="0" Nullable="false" />
     <Property Name="fk_event" Type="int" />
     <Property Name="fk_match" Type="int" />
     <Property Name="fk_evaluation" Type="int" />

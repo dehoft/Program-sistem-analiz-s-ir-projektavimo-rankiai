@@ -30,6 +30,8 @@ namespace CSGO.Models
         public Nullable<int> fk_match { get; set; }
         public Nullable<int> fk_evaluation { get; set; }
         public Nullable<int> fk_program { get; set; }
+        public System.DateTime start_time { get; set; }
+        public System.DateTime end_time { get; set; }
     
         public virtual evaluation evaluation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -208,6 +208,8 @@
     <NavigationProperty Name="match" Relationship="Self.has25" FromRole="tournaments" ToRole="matches" />
     <NavigationProperty Name="programs" Relationship="Self.has17" FromRole="tournaments" ToRole="programs" />
     <NavigationProperty Name="program" Relationship="Self.has27" FromRole="tournaments" ToRole="programs" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" />
   </EntityType>
   <EntityType Name="user">
     <Key>

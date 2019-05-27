@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: projektas
 -- ------------------------------------------------------
--- Server version	8.0.12
+-- Server version	8.0.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -437,6 +437,8 @@ CREATE TABLE `tournaments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `type` varchar(30) NOT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
   `fk_event` int(11) DEFAULT NULL,
   `fk_match` int(11) DEFAULT NULL,
   `fk_evaluation` int(11) DEFAULT NULL,
@@ -450,7 +452,7 @@ CREATE TABLE `tournaments` (
   CONSTRAINT `has26` FOREIGN KEY (`fk_evaluation`) REFERENCES `evaluation` (`id`),
   CONSTRAINT `has27` FOREIGN KEY (`fk_program`) REFERENCES `programs` (`id`),
   CONSTRAINT `has5` FOREIGN KEY (`fk_event`) REFERENCES `eventts` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -459,6 +461,7 @@ CREATE TABLE `tournaments` (
 
 LOCK TABLES `tournaments` WRITE;
 /*!40000 ALTER TABLE `tournaments` DISABLE KEYS */;
+INSERT INTO `tournaments` VALUES (2,'League','good','2019-05-27 15:18:00','2019-05-27 19:18:00',NULL,NULL,NULL,NULL),(4,'League','best','2019-05-27 15:18:00','2019-05-27 19:18:00',NULL,NULL,NULL,NULL),(5,'League','best','2019-06-27 15:18:00','2019-07-27 15:18:00',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `tournaments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -579,4 +582,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-24 18:18:50
+-- Dump completed on 2019-05-28  0:03:35

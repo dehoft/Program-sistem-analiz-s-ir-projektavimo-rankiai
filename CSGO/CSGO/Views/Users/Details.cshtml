@@ -7,8 +7,8 @@
 <h2>Details</h2>
 
 <div>
-    <h4>user</h4>
-    <hr />
+	<h4>user</h4>
+	<hr />
 	<dl class="dl-horizontal">
 		<dt>
 			@Html.DisplayNameFor(model => model.username)
@@ -55,21 +55,34 @@
 		</dt>
 
 
-			@foreach (var item in Model.users_in_giveaway.ToList())
-			{
-		<dd>
-			@Html.DisplayFor(model => item.giveaway.id)
-			@foreach (var item2 in Model.referrals.ToList())
-			{
-				if (item2.fk_giveaway == item.giveaway.id)
+		@foreach (var item in Model.users_in_giveaway.ToList())
+		{
+			<dd>
+				@Html.DisplayFor(model => item.giveaway.id)
+				@foreach (var item2 in Model.referrals.ToList())
 				{
+					if (item2.fk_giveaway == item.giveaway.id)
+					{
 
-					@Html.DisplayFor(model => item2.count)
+						@Html.DisplayFor(model => item2.count)
 
+					}
 				}
+			</dd>
+		}
+
+		<dt>
+			Bettings
+		</dt>
+		<dd>
+			@foreach (var item in Model.users_bets.ToList())
+			{
+				@Html.DisplayFor(model => item.bet_value)
+				@Html.DisplayFor(model => item.won)
 			}
 		</dd>
-			}
-
-		</dl>
+	</dl>
 </div>
+<p>
+	@Html.ActionLink("Bet", "Bet", new { id = Model.id })
+</p>

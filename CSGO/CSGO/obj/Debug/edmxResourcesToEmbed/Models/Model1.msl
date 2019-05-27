@@ -154,6 +154,8 @@
     <EntitySetMapping Name="tournaments">
       <EntityTypeMapping TypeName="DBModel.tournament">
         <MappingFragment StoreEntitySet="tournaments">
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="type" ColumnName="type" />

@@ -177,7 +177,14 @@ namespace CSGO.Controllers
 				return RedirectToAction("Login","Login");
 			}
 		}
-
+		public ActionResult Bet(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			return RedirectToAction("Create", "UsersBets");
+		}
 		protected override void Dispose(bool disposing)
         {
             if (disposing)
