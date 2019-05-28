@@ -215,5 +215,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="users_bet_skins">
+      <EntityTypeMapping TypeName="DBModel.users_bet_skins">
+        <MappingFragment StoreEntitySet="users_bet_skins">
+          <ScalarProperty Name="fk_skin" ColumnName="fk_skin" />
+          <ScalarProperty Name="fk_betting" ColumnName="fk_betting" />
+          <ScalarProperty Name="fk_user" ColumnName="fk_user" />
+          <ScalarProperty Name="won" ColumnName="won" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

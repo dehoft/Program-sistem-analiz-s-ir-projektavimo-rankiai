@@ -179,6 +179,16 @@
     <Property Name="fk_evaluation" Type="int" />
     <Property Name="fk_place" Type="int" />
   </EntityType>
+  <EntityType Name="users_bet_skins">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="won" Type="bool" />
+    <Property Name="fk_user" Type="int" />
+    <Property Name="fk_betting" Type="int" />
+    <Property Name="fk_skin" Type="int" />
+  </EntityType>
   <EntityType Name="users_bets">
     <Key>
       <PropertyRef Name="id" />
@@ -545,6 +555,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="has37">
+    <End Role="skins" Type="Self.skins" Multiplicity="0..1" />
+    <End Role="users_bet_skins" Type="Self.users_bet_skins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="skins">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users_bet_skins">
+        <PropertyRef Name="fk_skin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has38">
+    <End Role="bettings" Type="Self.bettings" Multiplicity="0..1" />
+    <End Role="users_bet_skins" Type="Self.users_bet_skins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bettings">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users_bet_skins">
+        <PropertyRef Name="fk_betting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has39">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="users_bet_skins" Type="Self.users_bet_skins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users_bet_skins">
+        <PropertyRef Name="fk_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="has4">
     <End Role="programs" Type="Self.programs" Multiplicity="0..1" />
     <End Role="eventts" Type="Self.eventts" Multiplicity="*" />
@@ -681,6 +727,7 @@
     <EntitySet Name="tickets" EntityType="Self.tickets" Schema="projektas" store:Type="Tables" />
     <EntitySet Name="tournaments" EntityType="Self.tournaments" Schema="projektas" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="projektas" store:Type="Tables" />
+    <EntitySet Name="users_bet_skins" EntityType="Self.users_bet_skins" Schema="projektas" store:Type="Tables" />
     <EntitySet Name="users_bets" EntityType="Self.users_bets" Schema="projektas" store:Type="Tables" />
     <EntitySet Name="users_in_giveaway" EntityType="Self.users_in_giveaway" Schema="projektas" store:Type="Tables" />
     <AssociationSet Name="belongs3" Association="Self.belongs3">
@@ -798,6 +845,18 @@
     <AssociationSet Name="has36" Association="Self.has36">
       <End Role="giveaways" EntitySet="giveaways" />
       <End Role="referrals" EntitySet="referrals" />
+    </AssociationSet>
+    <AssociationSet Name="has37" Association="Self.has37">
+      <End Role="skins" EntitySet="skins" />
+      <End Role="users_bet_skins" EntitySet="users_bet_skins" />
+    </AssociationSet>
+    <AssociationSet Name="has38" Association="Self.has38">
+      <End Role="bettings" EntitySet="bettings" />
+      <End Role="users_bet_skins" EntitySet="users_bet_skins" />
+    </AssociationSet>
+    <AssociationSet Name="has39" Association="Self.has39">
+      <End Role="users" EntitySet="users" />
+      <End Role="users_bet_skins" EntitySet="users_bet_skins" />
     </AssociationSet>
     <AssociationSet Name="has4" Association="Self.has4">
       <End Role="programs" EntitySet="programs" />

@@ -53,7 +53,10 @@ namespace CSGO.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.users_bets.Add(users_bets);
+				users_bets.fk_user = (int)Session["Id"];
+				users_bets.fk_betting = (int)Session["BetId"];
+				Session.Remove("BetId");
+				db.users_bets.Add(users_bets);
                 db.SaveChanges();
                 return RedirectToAction("Index","Tournaments");
             }
@@ -91,6 +94,7 @@ namespace CSGO.Controllers
             {
 				users_bets.fk_user = (int)Session["Id"];
 				users_bets.fk_betting = (int)Session["BetId"];
+				Session.Remove("BetId");
 				db.Entry(users_bets).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -125,8 +129,8 @@ namespace CSGO.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        protected override void Dispose(bool disposing)
+		
+		protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

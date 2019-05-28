@@ -61,6 +61,10 @@
         <EntityTypeShape EntityType="DBModel.referral" Width="1.5" PointX="24.5" PointY="9.5" />
         <AssociationConnector Association="DBModel.has36" />
         <AssociationConnector Association="DBModel.has35" />
+        <EntityTypeShape EntityType="DBModel.users_bet_skins" Width="1.5" PointX="22.5" PointY="2.75" />
+        <AssociationConnector Association="DBModel.has38" />
+        <AssociationConnector Association="DBModel.has37" />
+        <AssociationConnector Association="DBModel.has39" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

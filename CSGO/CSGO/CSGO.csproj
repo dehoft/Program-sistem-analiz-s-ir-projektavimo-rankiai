@@ -151,6 +151,7 @@
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TournamentsController.cs" />
     <Compile Include="Controllers\UsersBetsController.cs" />
+    <Compile Include="Controllers\UsersBetSkinsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -216,6 +217,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\users_bets.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\users_bet_skins.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\users_in_giveaway.cs">
@@ -336,6 +340,11 @@
     <Content Include="Views\UsersBets\Details.cshtml" />
     <Content Include="Views\UsersBets\Edit.cshtml" />
     <Content Include="Views\UsersBets\Index.cshtml" />
+    <Content Include="Views\UsersBetSkins\Create.cshtml" />
+    <Content Include="Views\UsersBetSkins\Delete.cshtml" />
+    <Content Include="Views\UsersBetSkins\Details.cshtml" />
+    <Content Include="Views\UsersBetSkins\Edit.cshtml" />
+    <Content Include="Views\UsersBetSkins\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

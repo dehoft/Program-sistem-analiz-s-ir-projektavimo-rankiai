@@ -72,14 +72,42 @@
 		}
 
 		<dt>
-			Bettings
+			Bettings money
 		</dt>
+
+		@foreach (var item in Model.users_bets.ToList())
+		{
 		<dd>
-			@foreach (var item in Model.users_bets.ToList())
+			@Html.DisplayFor(model => item.bet_value)
+			@Html.DisplayFor(model => item.won)
+			@if (item.won == true)
 			{
-				@Html.DisplayFor(model => item.bet_value)
-				@Html.DisplayFor(model => item.won)
+				@Html.ActionLink("Claim", "ClaimMoney")
+			}
+			else if(item.won==false)
+			{
+			@Html.ActionLink("Delete", "MoneyDelete", new { id = item.id })
 			}
 		</dd>
+		}
+		<dt>
+			Bettings skins
+		</dt>
+
+		@foreach (var item in Model.users_bet_skins.ToList())
+		{
+		<dd>
+			@Html.DisplayFor(model => item.skin.name)
+			@Html.DisplayFor(model => item.won)
+			@if (item.won == true)
+			{
+				@Html.ActionLink("Claim", "ClaimSkin")
+			}
+			else if(item.won==false)
+			{
+				@Html.ActionLink("Delete", "SkinDelete", new { id = item.id })
+			}
+		</dd>
+		}
 	</dl>
 </div>

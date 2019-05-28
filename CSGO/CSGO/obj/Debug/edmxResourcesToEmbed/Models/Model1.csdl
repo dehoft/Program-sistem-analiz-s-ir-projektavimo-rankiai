@@ -12,6 +12,7 @@
     <NavigationProperty Name="match" Relationship="Self.has11" FromRole="bettings" ToRole="matches" />
     <NavigationProperty Name="matches" Relationship="Self.has16" FromRole="bettings" ToRole="matches" />
     <NavigationProperty Name="users_bets1" Relationship="Self.has32" FromRole="bettings" ToRole="users_bets" />
+    <NavigationProperty Name="users_bet_skins" Relationship="DBModel.has38" FromRole="betting" ToRole="users_bet_skins" />
   </EntityType>
   <EntityType Name="evaluation">
     <Key>
@@ -146,6 +147,7 @@
     <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="fk_skinsInGiveaway" Type="Int32" />
     <NavigationProperty Name="skins_in_giveaway" Relationship="Self.has1" FromRole="skins" ToRole="skins_in_giveaway" />
+    <NavigationProperty Name="users_bet_skins" Relationship="DBModel.has37" FromRole="skin" ToRole="users_bet_skins" />
   </EntityType>
   <EntityType Name="skins_in_giveaway">
     <Key>
@@ -238,6 +240,7 @@
     <NavigationProperty Name="users_bets1" Relationship="Self.has30" FromRole="users" ToRole="users_bets" />
     <NavigationProperty Name="users_in_giveaway" Relationship="Self.has8" FromRole="users" ToRole="users_in_giveaway" />
     <NavigationProperty Name="referrals" Relationship="DBModel.has35" FromRole="user" ToRole="referral" />
+    <NavigationProperty Name="users_bet_skins" Relationship="DBModel.has39" FromRole="user" ToRole="users_bet_skins" />
   </EntityType>
   <EntityType Name="users_bets">
     <Key>
@@ -882,6 +885,19 @@
       <End Role="user" EntitySet="users" />
       <End Role="referral" EntitySet="referrals" />
     </AssociationSet>
+    <EntitySet Name="users_bet_skins" EntityType="DBModel.users_bet_skins" />
+    <AssociationSet Name="has38" Association="DBModel.has38">
+      <End Role="betting" EntitySet="bettings" />
+      <End Role="users_bet_skins" EntitySet="users_bet_skins" />
+    </AssociationSet>
+    <AssociationSet Name="has37" Association="DBModel.has37">
+      <End Role="skin" EntitySet="skins" />
+      <End Role="users_bet_skins" EntitySet="users_bet_skins" />
+    </AssociationSet>
+    <AssociationSet Name="has39" Association="DBModel.has39">
+      <End Role="user" EntitySet="users" />
+      <End Role="users_bet_skins" EntitySet="users_bet_skins" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="referral">
     <Key>
@@ -914,6 +930,55 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="referral">
+        <PropertyRef Name="fk_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="users_bet_skins">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="won" Type="Boolean" />
+    <Property Name="fk_user" Type="Int32" />
+    <Property Name="fk_betting" Type="Int32" />
+    <Property Name="fk_skin" Type="Int32" />
+    <NavigationProperty Name="betting" Relationship="DBModel.has38" FromRole="users_bet_skins" ToRole="betting" />
+    <NavigationProperty Name="skin" Relationship="DBModel.has37" FromRole="users_bet_skins" ToRole="skin" />
+    <NavigationProperty Name="user" Relationship="DBModel.has39" FromRole="users_bet_skins" ToRole="user" />
+  </EntityType>
+  <Association Name="has38">
+    <End Type="DBModel.betting" Role="betting" Multiplicity="0..1" />
+    <End Type="DBModel.users_bet_skins" Role="users_bet_skins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="betting">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users_bet_skins">
+        <PropertyRef Name="fk_betting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has37">
+    <End Type="DBModel.skin" Role="skin" Multiplicity="0..1" />
+    <End Type="DBModel.users_bet_skins" Role="users_bet_skins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="skin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users_bet_skins">
+        <PropertyRef Name="fk_skin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="has39">
+    <End Type="DBModel.user" Role="user" Multiplicity="0..1" />
+    <End Type="DBModel.users_bet_skins" Role="users_bet_skins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users_bet_skins">
         <PropertyRef Name="fk_user" />
       </Dependent>
     </ReferentialConstraint>

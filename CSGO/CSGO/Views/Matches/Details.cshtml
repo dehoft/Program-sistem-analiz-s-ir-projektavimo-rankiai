@@ -50,7 +50,8 @@
 			{
 		<dd>
 			@Html.DisplayFor(model => item.coefficient)
-			@Html.ActionLink(" Bet", "Bet", new { id = item.id })
+			@Html.ActionLink(" Bet money", "Bet", new { id = item.id })
+			@Html.ActionLink(" Bet skins", "BetSkins", new { id = item.id })
 		</dd>
 			}
 

@@ -173,7 +173,15 @@ namespace CSGO.Controllers
 			Session["BetId"] = id;
 			return RedirectToAction("Create", "UsersBets");
 		}
-
+		public ActionResult BetSkins(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Session["BetId"] = id;
+			return RedirectToAction("Create", "UsersBetSkins");
+		}
 		protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -19,6 +19,7 @@ namespace CSGO.Models
         {
             this.matches = new HashSet<match>();
             this.users_bets1 = new HashSet<users_bets>();
+            this.users_bet_skins = new HashSet<users_bet_skins>();
         }
     
         public int id { get; set; }
@@ -32,5 +33,7 @@ namespace CSGO.Models
         public virtual ICollection<match> matches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<users_bets> users_bets1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<users_bet_skins> users_bet_skins { get; set; }
     }
 }

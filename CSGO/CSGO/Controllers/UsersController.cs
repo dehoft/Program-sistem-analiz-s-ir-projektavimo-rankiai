@@ -185,6 +185,22 @@ namespace CSGO.Controllers
 			}
 			return RedirectToAction("Create", "UsersBets");
 		}
+		public ActionResult MoneyDelete(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			return RedirectToAction("Delete", "UsersBets", new { id = id });
+		}
+		public ActionResult SkinDelete(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			return RedirectToAction("Delete", "UsersBetSkins", new { id = id });
+		}
 		protected override void Dispose(bool disposing)
         {
             if (disposing)

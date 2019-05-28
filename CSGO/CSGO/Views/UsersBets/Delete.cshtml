@@ -27,22 +27,14 @@
             @Html.DisplayFor(model => model.won)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.user.username)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.user.username)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+	<div class="form-actions no-color">
+		<input type="submit" value="Delete" class="btn btn-default" /> |
+		@Html.ActionLink("Back", "Details", "Users")
+	</div>
     }
 </div>

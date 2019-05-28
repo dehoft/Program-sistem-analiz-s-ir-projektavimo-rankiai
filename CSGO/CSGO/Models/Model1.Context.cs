@@ -42,5 +42,6 @@ namespace CSGO.Models
         public virtual DbSet<users_bets> users_bets { get; set; }
         public virtual DbSet<users_in_giveaway> users_in_giveaway { get; set; }
         public virtual DbSet<referral> referrals { get; set; }
+        public virtual DbSet<users_bet_skins> users_bet_skins { get; set; }
     }
 }
