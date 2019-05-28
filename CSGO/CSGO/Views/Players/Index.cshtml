@@ -5,10 +5,14 @@
 }
 
 <h2>Player page</h2>
-
+@if (Session["userLevel"] != null)
+{
+      if ((int)Session["userLevel"] == 2){
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+        }
+}
 <table class="table">
     <tr>
         <th>
@@ -65,10 +69,17 @@
             @Html.DisplayFor(modelItem => item.team.name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
+            @if (Session["userLevel"] != null)
+            {
+                if ((int)Session["userLevel"] == 2)
+                {
+                    @Html.ActionLink(" Edit", "Edit", new { id = item.id })
+                    
+                    @Html.ActionLink(" Delete", "Delete", new { id = item.id })
+                }
+            }@Html.ActionLink(" Details", "Details", new { id = item.id })
+
+                </td>
     </tr>
 }
 
