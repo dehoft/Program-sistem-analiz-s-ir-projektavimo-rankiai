@@ -25,14 +25,14 @@ DROP TABLE IF EXISTS `bettings`;
 CREATE TABLE `bettings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `coefficient` double(40,8) NOT NULL,
-  `fk_users_bets` int(11) NOT NULL,
+  `fk_users_bets` int(11) DEFAULT NULL,
   `fk_match` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `belongs8` (`fk_users_bets`),
   KEY `has11` (`fk_match`),
   CONSTRAINT `belongs8` FOREIGN KEY (`fk_users_bets`) REFERENCES `users_bets` (`id`),
   CONSTRAINT `has11` FOREIGN KEY (`fk_match`) REFERENCES `matches` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `bettings` (
 
 LOCK TABLES `bettings` WRITE;
 /*!40000 ALTER TABLE `bettings` DISABLE KEYS */;
+INSERT INTO `bettings` VALUES (6,55.00000000,NULL,2),(11,87.00000000,NULL,2);
 /*!40000 ALTER TABLE `bettings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +173,7 @@ CREATE TABLE `matches` (
   CONSTRAINT `has33` FOREIGN KEY (`fk_ticket`) REFERENCES `tickets` (`id`),
   CONSTRAINT `plays` FOREIGN KEY (`fk_first_team`) REFERENCES `teams` (`id`),
   CONSTRAINT `plays1` FOREIGN KEY (`fk_second_team`) REFERENCES `teams` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,6 +182,7 @@ CREATE TABLE `matches` (
 
 LOCK TABLES `matches` WRITE;
 /*!40000 ALTER TABLE `matches` DISABLE KEYS */;
+INSERT INTO `matches` VALUES (2,'2019-05-28 15:18:00','Road',NULL,1,0,NULL,NULL,5,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `matches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +272,7 @@ CREATE TABLE `programs` (
   KEY `has17` (`fk_tournament`),
   CONSTRAINT `has17` FOREIGN KEY (`fk_tournament`) REFERENCES `tournaments` (`id`),
   CONSTRAINT `has18` FOREIGN KEY (`fk_event`) REFERENCES `eventts` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,6 +281,7 @@ CREATE TABLE `programs` (
 
 LOCK TABLES `programs` WRITE;
 /*!40000 ALTER TABLE `programs` DISABLE KEYS */;
+INSERT INTO `programs` VALUES (1,'Gera','Labai',NULL,NULL),(2,'Geras','Labai',5,NULL);
 /*!40000 ALTER TABLE `programs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -511,6 +514,39 @@ INSERT INTO `users` VALUES (1,'regular','regular',1,'regular','regular','male','
 UNLOCK TABLES;
 
 --
+-- Table structure for table `users_bet_skins`
+--
+
+DROP TABLE IF EXISTS `users_bet_skins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `users_bet_skins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `won` tinyint(1) DEFAULT '0',
+  `fk_user` int(11) DEFAULT NULL,
+  `fk_betting` int(11) DEFAULT NULL,
+  `fk_skin` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `has39` (`fk_user`),
+  KEY `has37` (`fk_skin`),
+  KEY `has38` (`fk_betting`),
+  CONSTRAINT `has37` FOREIGN KEY (`fk_skin`) REFERENCES `skins` (`id`),
+  CONSTRAINT `has38` FOREIGN KEY (`fk_betting`) REFERENCES `bettings` (`id`),
+  CONSTRAINT `has39` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users_bet_skins`
+--
+
+LOCK TABLES `users_bet_skins` WRITE;
+/*!40000 ALTER TABLE `users_bet_skins` DISABLE KEYS */;
+INSERT INTO `users_bet_skins` VALUES (3,NULL,1,11,1);
+/*!40000 ALTER TABLE `users_bet_skins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users_bets`
 --
 
@@ -528,7 +564,7 @@ CREATE TABLE `users_bets` (
   KEY `has32` (`fk_betting`),
   CONSTRAINT `bets` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`),
   CONSTRAINT `has32` FOREIGN KEY (`fk_betting`) REFERENCES `bettings` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -537,6 +573,7 @@ CREATE TABLE `users_bets` (
 
 LOCK TABLES `users_bets` WRITE;
 /*!40000 ALTER TABLE `users_bets` DISABLE KEYS */;
+INSERT INTO `users_bets` VALUES (2,87,NULL,NULL,NULL),(3,888,NULL,NULL,NULL),(4,55555,NULL,NULL,NULL),(5,4444444,1,1,6),(6,333333333,NULL,1,11);
 /*!40000 ALTER TABLE `users_bets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -582,4 +619,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-28  0:03:35
+-- Dump completed on 2019-05-28 21:05:30
