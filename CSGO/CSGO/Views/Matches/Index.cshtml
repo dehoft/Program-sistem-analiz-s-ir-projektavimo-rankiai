@@ -16,23 +16,26 @@
     }
 }
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.map)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.result)
-        </th>
-        <th>
-           @* @Html.DisplayNameFor(model => model.team.name)*@
-            First Team
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.team1.name)*@
-            Second Team
-        </th>
-        <th></th>
-    </tr>
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.start_time)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.map)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.result)
+		</th>
+		<th>
+			@* @Html.DisplayNameFor(model => model.team.name)*@
+			First Team
+		</th>
+		<th>
+			@*@Html.DisplayNameFor(model => model.team1.name)*@
+			Second Team
+		</th>
+		<th></th>
+	</tr>
 
 @foreach (var item in Model) {
     <tr>
@@ -44,27 +47,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.result)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.is_broadcasted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.is_registration_open)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.betting.id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tournament.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ticket.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.place.id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ticket1.description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.team.name)

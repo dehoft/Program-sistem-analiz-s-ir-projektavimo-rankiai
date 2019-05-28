@@ -183,7 +183,7 @@ CREATE TABLE `matches` (
 
 LOCK TABLES `matches` WRITE;
 /*!40000 ALTER TABLE `matches` DISABLE KEYS */;
-INSERT INTO `matches` VALUES (2,'2019-05-28 15:18:00','Road',NULL,1,0,NULL,NULL,5,NULL,NULL,NULL);
+INSERT INTO `matches` VALUES (2,'2019-05-28 15:18:00','Road',NULL,1,0,1,2,5,NULL,6,NULL);
 /*!40000 ALTER TABLE `matches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +243,7 @@ CREATE TABLE `players` (
   PRIMARY KEY (`id`),
   KEY `belongs5` (`fk_team`),
   CONSTRAINT `belongs5` FOREIGN KEY (`fk_team`) REFERENCES `teams` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,6 +252,7 @@ CREATE TABLE `players` (
 
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
+INSERT INTO `players` VALUES (1,'asd','asd','asd','asd',55.00000000,34,'asd',4,3,3.00000000,3,3,3,3,1),(2,'s','s','s','s',55.00000000,3,'3',3,3,3.00000000,3,3,3,3,2),(3,'w','w','w','w',3.00000000,3,'3',3,2,2.00000000,2,2,2,2,1);
 /*!40000 ALTER TABLE `players` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,7 +359,7 @@ CREATE TABLE `skins_in_giveaway` (
   KEY `has2` (`fk_giveaway`),
   CONSTRAINT `has1` FOREIGN KEY (`fk_skin`) REFERENCES `skins` (`id`),
   CONSTRAINT `has2` FOREIGN KEY (`fk_giveaway`) REFERENCES `giveaways` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -394,7 +395,7 @@ CREATE TABLE `teams` (
   KEY `has23` (`fk_player`),
   CONSTRAINT `has22` FOREIGN KEY (`fk_match`) REFERENCES `matches` (`id`),
   CONSTRAINT `has23` FOREIGN KEY (`fk_player`) REFERENCES `players` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -403,6 +404,7 @@ CREATE TABLE `teams` (
 
 LOCK TABLES `teams` WRITE;
 /*!40000 ALTER TABLE `teams` DISABLE KEYS */;
+INSERT INTO `teams` VALUES (1,'asd',4,4,4,4,4,4,2,1),(2,'ss',4,4,4,5,5,5,2,1);
 /*!40000 ALTER TABLE `teams` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -619,4 +621,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-28 21:58:11
+-- Dump completed on 2019-05-29  1:49:26
