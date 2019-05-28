@@ -1,0 +1,177 @@
+﻿@model CSGO.Models.match
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Match details</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.start_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.map)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.map)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.result)
+        </dd>
+
+        <dt>
+           @* @Html.DisplayNameFor(model => model.tournament.name)*@
+            Tournament name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tournament.name)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.team.name)*@
+            Firs Team
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.team.name)
+        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.team1.name)*@
+            Second Team
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.team1.name)
+        </dd>
+
+    </dl>
+</div>
+
+<h2> @Html.DisplayFor(model => model.team1.name) Players</h2>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => Model.team1.player.first_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.team1.player.last_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.team1.player.rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.team1.player.age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.team1.player.country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.team1.maps_played)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.team1.players.ToList())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.first_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.maps_played)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Show", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<h2> @Html.DisplayFor(model => model.team.name) Players</h2>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => Model.team.player.first_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.team.player.last_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.team.player.rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.team.player.age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.team.player.country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.team.maps_played)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.team.players.ToList())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.first_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.maps_played)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Show", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
