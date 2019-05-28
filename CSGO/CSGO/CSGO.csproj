@@ -345,6 +345,8 @@
     <Content Include="Views\UsersBetSkins\Details.cshtml" />
     <Content Include="Views\UsersBetSkins\Edit.cshtml" />
     <Content Include="Views\UsersBetSkins\Index.cshtml" />
+    <Content Include="Views\UsersBets\Show.cshtml" />
+    <Content Include="Views\UsersBetSkins\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

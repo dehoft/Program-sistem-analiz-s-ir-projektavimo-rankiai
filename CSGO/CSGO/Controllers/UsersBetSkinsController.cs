@@ -128,10 +128,16 @@ namespace CSGO.Controllers
             users_bet_skins users_bet_skins = db.users_bet_skins.Find(id);
             db.users_bet_skins.Remove(users_bet_skins);
             db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+            return RedirectToAction("Show","UsersBetSkins");
 
-        protected override void Dispose(bool disposing)
+		}
+		public ActionResult Show()
+		{
+
+			var users_bet_skins = db.users_bet_skins.Include(u => u.betting).Include(u => u.skin).Include(u => u.user);
+			return View(users_bet_skins.ToList());
+		}
+		protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

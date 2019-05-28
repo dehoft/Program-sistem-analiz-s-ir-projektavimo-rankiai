@@ -118,17 +118,23 @@ namespace CSGO.Controllers
             }
             return View(users_bets);
         }
+		public ActionResult Show()
+		{
 
-        // POST: UsersBets/Delete/5
-        [HttpPost, ActionName("Delete")]
+			var users_bets = db.users_bets.Include(u => u.betting).Include(u => u.user);
+			return View(users_bets.ToList());
+		}
+
+		// POST: UsersBets/Delete/5
+		[HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             users_bets users_bets = db.users_bets.Find(id);
             db.users_bets.Remove(users_bets);
             db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+			return RedirectToAction("Show", "UsersBets");
+		}
 		
 		protected override void Dispose(bool disposing)
         {

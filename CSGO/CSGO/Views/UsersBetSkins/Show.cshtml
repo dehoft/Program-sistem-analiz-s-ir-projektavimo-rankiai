@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CSGO.Models.users_bet_skins>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.skin.name)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.won)
+		</th>
+		<th>
+
+		</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+	if (item.fk_user == (int)Session["Id"])
+	{
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.skin.name)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.won)
+		</td>
+		<td>
+			@if (item.won == true)
+			{
+				@Html.ActionLink("Claim", "ClaimMoney")
+			}
+			else if (item.won == false)
+			{
+				@Html.ActionLink("Delete", "Delete", new { id = item.id })
+			}
+		</td>
+	</tr>
+	}
+}
+
+</table>
