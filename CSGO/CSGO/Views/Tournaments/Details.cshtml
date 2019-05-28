@@ -43,11 +43,29 @@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.eventt.name)
+			Event
 		</dt>
 
 		<dd>
 			@Html.DisplayFor(model => model.eventt.name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.program)
+		</dt>
+
+		<dd>
+			@if (Model.programs.Count != 0)
+			{
+				foreach (var item in Model.programs.ToList())
+				{
+					@Html.DisplayFor(model => item.name)
+					@Html.ActionLink(" Edit", "ProgramEdit", new { id = item.id })
+				}
+			}
+			else
+			{
+				@Html.ActionLink("Add program", "Program", new { id = Model.id })
+			}
 		</dd>
 		<dt>
 			@Html.DisplayNameFor(model => model.matches)
@@ -57,6 +75,8 @@
 			@foreach (var item in Model.matches)
 			{
 				@Html.DisplayFor(model => item.map)
+				@Html.ActionLink(" Details", "ShowMatch", new { id = item.id })
+				@Html.ActionLink(" Delete", "MatchDelete", new { id = item.id })
 			}
 		</dd>
 	</dl>
@@ -64,5 +84,5 @@
 <p>
 	@Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
 	@Html.ActionLink("Back to List", "Index") |
-	@Html.ActionLink("Register", "Register", new { id = Model.id })
+	@Html.ActionLink("Register match", "Register", new { id = Model.id })
 </p>

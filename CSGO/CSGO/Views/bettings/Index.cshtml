@@ -15,10 +15,7 @@
             @Html.DisplayNameFor(model => model.coefficient)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.users_bets.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.match.map)
+            @Html.DisplayNameFor(model => model.match)
         </th>
         <th></th>
     </tr>
@@ -29,10 +26,7 @@
             @Html.DisplayFor(modelItem => item.coefficient)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.users_bets.id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.match.map)
+            @Html.DisplayFor(modelItem => item.match)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

@@ -9,82 +9,77 @@
 <div>
     <h4>match</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.start_time)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.start_time)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.start_time)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.start_time)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.map)
+		</dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.map)
-        </dt>
+		<dd>
+			@Html.DisplayFor(model => model.map)
+		</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.map)
-        </dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.result)
+		</dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.result)
-        </dt>
+		<dd>
+			@Html.DisplayFor(model => model.result)
+		</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.result)
-        </dd>
+		<dt>
+			Broadcast
+		</dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.is_broadcasted)
-        </dt>
+		<dd>
+			@Html.DisplayFor(model => model.is_broadcasted)
+			</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.is_broadcasted)
-        </dd>
+		<dt>
+			Bettings
+		</dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.is_registration_open)
-        </dt>
+		<dd>
+			@foreach (var item in Model.bettings.ToList())
+			{
+				@Html.DisplayFor(model => item.coefficient)
+				@Html.ActionLink(" Bet", "Bet", new { id = item.id })
+			}
+		</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.is_registration_open)
-        </dd>
+		<dt>
+			Tournament
+		</dt>
 
-        <dt>
-            Betting id
-        </dt>
+		<dd>
+			@Html.DisplayFor(model => model.tournament.name)
+		</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.betting.id)
-        </dd>
+		<dt>
+			First team
+		</dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tournament.name)
-        </dt>
+		<dd>
+			@Html.DisplayFor(model => model.team.name)
+		</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tournament.name)
-        </dd>
+		<dt>
+			Second team
+		</dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.team.name)
-        </dt>
+		<dd>
+			@Html.DisplayFor(model => model.team1.name)
+		</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.team.name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.team1.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.team1.name)
-        </dd>
-
-    </dl>
+	</dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index","Tournaments")
 </p>

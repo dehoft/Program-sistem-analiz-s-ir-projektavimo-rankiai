@@ -53,9 +53,15 @@ namespace CSGO.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.programs.Add(program);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+				if (Session["TournamentId"] != null)
+				{
+					int d = (int)Session["TournamentId"];
+					program.fk_tournament = d;
+					Session.Remove("TournamentId");
+					db.programs.Add(program);
+					db.SaveChanges();
+					return RedirectToAction("Details","Tournaments",new { id=d});
+				}
             }
 
             ViewBag.fk_event = new SelectList(db.eventts, "id", "name", program.fk_event);
@@ -121,7 +127,7 @@ namespace CSGO.Controllers
             program program = db.programs.Find(id);
             db.programs.Remove(program);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Tournaments");
         }
 
         protected override void Dispose(bool disposing)

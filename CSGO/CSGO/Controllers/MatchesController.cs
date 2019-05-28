@@ -66,12 +66,23 @@ namespace CSGO.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,start_time,map,result,is_broadcasted,is_registration_open,fk_first_team,fk_second_team,fk_tournament,fk_place,fk_betting,fk_ticket")] match match)
         {
+			int d;
             if (ModelState.IsValid)
             {
-                db.matches.Add(match);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+				if (Session["TournamentId"] != null)
+				{
+					match.fk_tournament = (int)Session["TournamentId"];
+					d = (int)Session["TournamentId"];
+					Session.Remove("TounamentId");
+					db.matches.Add(match);
+					db.SaveChanges();
+					return RedirectToAction("Details", "Tournaments", new { id = d });
+				}
+				else
+				{
+					return HttpNotFound();
+				}
+			}
 
             ViewBag.fk_betting = new SelectList(db.bettings, "id", "id", match.fk_betting);
             ViewBag.fk_tournament = new SelectList(db.tournaments, "id", "name", match.fk_tournament);
@@ -151,10 +162,19 @@ namespace CSGO.Controllers
             match match = db.matches.Find(id);
             db.matches.Remove(match);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Tournaments");
         }
+		public ActionResult Bet(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Session["BetId"] = id;
+			return RedirectToAction("Create", "UsersBets");
+		}
 
-        protected override void Dispose(bool disposing)
+		protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

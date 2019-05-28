@@ -19,22 +19,24 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Teams", "Index", "Teams")</li>
-                    <li>@Html.ActionLink("Players", "Index", "Players")</li>
-                    @if (Session["Id"] == null)
-                    {
-                        <li>@Html.ActionLink("Login", "Login", "Login")</li>
-                    }
-                    else
-                    {
-                        <li>@Html.ActionLink("Dash board", "DashBoard", "Login")</li>
-                        <li>@Html.ActionLink("Log out", "LogOut", "Login")</li>
-                    }
-                </ul>
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Home", "Index", "Home")</li>
+					<li>@Html.ActionLink("About", "About", "Home")</li>
+					<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+					<li>@Html.ActionLink("Teams", "Index", "Teams")</li>
+					<li>@Html.ActionLink("Players", "Index", "Players")</li>
+					<li>@Html.ActionLink("Tournaments", "Index", "Tournaments")</li>
+					<li>@Html.ActionLink("Bets", "Index", "Bettings")</li>
+					@if (Session["Id"] == null)
+					{
+						<li>@Html.ActionLink("Login", "Login", "Login")</li>
+					}
+					else
+					{
+						<li>@Html.ActionLink("Dash board", "DashBoard", "Login")</li>
+						<li>@Html.ActionLink("Log out", "LogOut", "Login")</li>
+					}
+				</ul>
             </div>
         </div>
     </div>

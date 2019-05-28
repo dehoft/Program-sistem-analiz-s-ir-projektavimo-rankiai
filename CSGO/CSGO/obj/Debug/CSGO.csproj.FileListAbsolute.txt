@@ -165,3 +165,4 @@ B:\Documents\Github\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.csproj.CoreCompileI
 B:\Documents\Github\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.csproj.CopyComplete
 B:\Documents\Github\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.dll
 B:\Documents\Github\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.pdb
+C:\Users\Dovydas\Documents\GitHub\Sistemu_analize\CSGO\CSGO\obj\Debug\CSGO.csprojAssemblyReference.cache

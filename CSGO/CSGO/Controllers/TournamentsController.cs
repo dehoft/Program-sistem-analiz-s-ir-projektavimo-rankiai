@@ -138,9 +138,44 @@ namespace CSGO.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
+			Session["TournamentId"] = id;
 			return RedirectToAction("Create", "Matches", new { id = id });
 		}
 
+
+		public ActionResult ShowMatch(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			return RedirectToAction("Details", "Matches", new { id = id });
+		}
+		public ActionResult Program(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Session["TournamentId"] = id;
+			return RedirectToAction("Create", "Programs");
+		}
+		public ActionResult ProgramEdit(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			return RedirectToAction("Edit", "Programs", new { id = id });
+		}
+		public ActionResult MatchDelete(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			return RedirectToAction("Delete", "Matches", new { id = id });
+		}
 		protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -21,13 +21,5 @@ namespace CSGO.Models
     
         public virtual giveaway giveaway { get; set; }
         public virtual user user { get; set; }
-
-		public string referralLink
-		{
-			get
-			{
-				return "Users/Referral/" + referral1;
-			}
-		}
-	}
+    }
 }
