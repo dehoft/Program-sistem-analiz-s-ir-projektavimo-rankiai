@@ -4,16 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Matches page</h2>
 
-<p>
+@if (Session["userLevel"] != null)
+{
+    if ((int)Session["userLevel"] == 2)
+    {
+    <p>
     @Html.ActionLink("Create New", "Create")
-</p>
+    </p>
+    }
+}
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.start_time)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.map)
         </th>
@@ -21,31 +24,12 @@
             @Html.DisplayNameFor(model => model.result)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.is_broadcasted)
+           @* @Html.DisplayNameFor(model => model.team.name)*@
+            First Team
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.is_registration_open)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.betting.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tournament.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ticket.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.place.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ticket1.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.team.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.team1.name)
+            @*@Html.DisplayNameFor(model => model.team1.name)*@
+            Second Team
         </th>
         <th></th>
     </tr>
@@ -89,9 +73,15 @@
             @Html.DisplayFor(modelItem => item.team1.name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @if (Session["userLevel"] != null)
+            {
+                if ((int)Session["userLevel"] == 2)
+                {
+                    @Html.ActionLink(" Edit", "Edit", new { id = item.id })
+                    @Html.ActionLink(" Delete", "Delete", new { id = item.id })
+                }
+            }
+            @Html.ActionLink(" Details", "Details", new { id = item.id })
         </td>
     </tr>
 }

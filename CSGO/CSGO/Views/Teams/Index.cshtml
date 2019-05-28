@@ -6,9 +6,15 @@
 
 <h2>Teams page</h2>
 
+@if (Session["userLevel"] != null)
+{
+    if ((int)Session["userLevel"] == 2)
+    {
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+    }
+}
 
 @using (Html.BeginForm("Index", "Teams", FormMethod.Post))
 {
@@ -16,7 +22,8 @@
     <input type="submit" value="Enter name" />
 }
 
-@if (Model!=null)
+
+@if (Model != null)
 {
     <table class="table">
         <tr>
@@ -50,14 +57,21 @@
                     @Html.DisplayFor(modelItem => item.maps_played)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    @if (Session["userLevel"] != null)
+                    {
+                        if ((int)Session["userLevel"] == 2)
+                        {
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.id })
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.id })
+
+                        }
+                    }@Html.ActionLink(" Details", "Details", new { id = item.id })
                 </td>
             </tr>
         }
     </table>
-}else
+}
+else
 {
     <h2>No teams found</h2>
 }

@@ -132,7 +132,13 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "TeamPage") |
-    @Html.ActionLink("Player list", "Index")
+    @if (Session["userLevel"] != null)
+    {
+        if ((int)Session["userLevel"] == 2)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) 
+        }
+    }
+@Html.ActionLink("Back to List", "TeamPage") |
+@Html.ActionLink("Player list", "Index")
 </p>
