@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `bettings`;
 CREATE TABLE `bettings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `coefficient` double(40,8) NOT NULL,
+  `team_name` varchar(45) DEFAULT NULL,
   `fk_users_bets` int(11) DEFAULT NULL,
   `fk_match` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -41,7 +42,7 @@ CREATE TABLE `bettings` (
 
 LOCK TABLES `bettings` WRITE;
 /*!40000 ALTER TABLE `bettings` DISABLE KEYS */;
-INSERT INTO `bettings` VALUES (6,55.00000000,NULL,2),(11,87.00000000,NULL,2);
+INSERT INTO `bettings` VALUES (6,55.00000000,'New',NULL,2),(11,87.00000000,'Gera',NULL,2);
 /*!40000 ALTER TABLE `bettings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -542,7 +543,6 @@ CREATE TABLE `users_bet_skins` (
 
 LOCK TABLES `users_bet_skins` WRITE;
 /*!40000 ALTER TABLE `users_bet_skins` DISABLE KEYS */;
-INSERT INTO `users_bet_skins` VALUES (3,NULL,1,11,1);
 /*!40000 ALTER TABLE `users_bet_skins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -619,4 +619,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-28 21:05:30
+-- Dump completed on 2019-05-28 21:58:11
