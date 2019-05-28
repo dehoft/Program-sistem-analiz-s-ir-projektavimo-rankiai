@@ -16,23 +16,26 @@
     }
 }
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.map)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.result)
-        </th>
-        <th>
-           @* @Html.DisplayNameFor(model => model.team.name)*@
-            First Team
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.team1.name)*@
-            Second Team
-        </th>
-        <th></th>
-    </tr>
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.start_time)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.map)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.result)
+		</th>
+		<th>
+			@* @Html.DisplayNameFor(model => model.team.name)*@
+			First Team
+		</th>
+		<th>
+			@*@Html.DisplayNameFor(model => model.team1.name)*@
+			Second Team
+		</th>
+		<th></th>
+	</tr>
 
 @foreach (var item in Model) {
     <tr>
