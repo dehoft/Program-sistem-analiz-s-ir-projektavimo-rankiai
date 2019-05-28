@@ -6,6 +6,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="coefficient" Type="double" Nullable="false" />
+    <Property Name="team_name" Type="varchar" MaxLength="45" />
     <Property Name="fk_users_bets" Type="int" />
     <Property Name="fk_match" Type="int" Nullable="false" />
   </EntityType>

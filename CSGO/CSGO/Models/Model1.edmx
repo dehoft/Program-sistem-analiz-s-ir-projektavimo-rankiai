@@ -11,6 +11,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="coefficient" Type="double" Nullable="false" />
+          <Property Name="team_name" Type="varchar" MaxLength="45" />
           <Property Name="fk_users_bets" Type="int" />
           <Property Name="fk_match" Type="int" Nullable="false" />
         </EntityType>
@@ -921,6 +922,7 @@
           <NavigationProperty Name="matches" Relationship="Self.has16" FromRole="bettings" ToRole="matches" />
           <NavigationProperty Name="users_bets1" Relationship="Self.has32" FromRole="bettings" ToRole="users_bets" />
           <NavigationProperty Name="users_bet_skins" Relationship="DBModel.has38" FromRole="betting" ToRole="users_bet_skins" />
+          <Property Name="team_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="evaluation">
           <Key>
@@ -1900,6 +1902,7 @@
           <EntitySetMapping Name="bettings">
             <EntityTypeMapping TypeName="DBModel.betting">
               <MappingFragment StoreEntitySet="bettings">
+                <ScalarProperty Name="team_name" ColumnName="team_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="coefficient" ColumnName="coefficient" />
                 <ScalarProperty Name="fk_users_bets" ColumnName="fk_users_bets" />

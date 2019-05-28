@@ -26,6 +26,7 @@ namespace CSGO.Models
         public double coefficient { get; set; }
         public Nullable<int> fk_users_bets { get; set; }
         public int fk_match { get; set; }
+        public string team_name { get; set; }
     
         public virtual users_bets users_bets { get; set; }
         public virtual match match { get; set; }

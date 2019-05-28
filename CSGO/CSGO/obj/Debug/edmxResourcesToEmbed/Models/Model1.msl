@@ -4,6 +4,7 @@
     <EntitySetMapping Name="bettings">
       <EntityTypeMapping TypeName="DBModel.betting">
         <MappingFragment StoreEntitySet="bettings">
+          <ScalarProperty Name="team_name" ColumnName="team_name" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="coefficient" ColumnName="coefficient" />
           <ScalarProperty Name="fk_users_bets" ColumnName="fk_users_bets" />

@@ -13,6 +13,7 @@
     <NavigationProperty Name="matches" Relationship="Self.has16" FromRole="bettings" ToRole="matches" />
     <NavigationProperty Name="users_bets1" Relationship="Self.has32" FromRole="bettings" ToRole="users_bets" />
     <NavigationProperty Name="users_bet_skins" Relationship="DBModel.has38" FromRole="betting" ToRole="users_bet_skins" />
+    <Property Name="team_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="evaluation">
     <Key>
