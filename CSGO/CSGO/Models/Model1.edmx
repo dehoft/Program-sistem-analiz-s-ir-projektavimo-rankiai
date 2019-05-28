@@ -11,7 +11,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="coefficient" Type="double" Nullable="false" />
-          <Property Name="fk_users_bets" Type="int" Nullable="false" />
+          <Property Name="fk_users_bets" Type="int" />
           <Property Name="fk_match" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="evaluation">
@@ -227,7 +227,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="belongs8">
-          <End Role="users_bets" Type="Self.users_bets" Multiplicity="1" />
+          <End Role="users_bets" Type="Self.users_bets" Multiplicity="0..1" />
           <End Role="bettings" Type="Self.bettings" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="users_bets">

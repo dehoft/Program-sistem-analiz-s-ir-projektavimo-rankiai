@@ -45,13 +45,15 @@
 			Bettings
 		</dt>
 
-		<dd>
+
 			@foreach (var item in Model.bettings.ToList())
 			{
-				@Html.DisplayFor(model => item.coefficient)
-				@Html.ActionLink(" Bet", "Bet", new { id = item.id })
-			}
+		<dd>
+			@Html.DisplayFor(model => item.coefficient)
+			@Html.ActionLink(" Bet", "Bet", new { id = item.id })
 		</dd>
+			}
+
 
 		<dt>
 			Tournament

@@ -55,7 +55,7 @@ namespace CSGO.Controllers
             {
                 db.users_bets.Add(users_bets);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Tournaments");
             }
 
             ViewBag.fk_betting = new SelectList(db.bettings, "id", "id", users_bets.fk_betting);
@@ -89,7 +89,9 @@ namespace CSGO.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(users_bets).State = EntityState.Modified;
+				users_bets.fk_user = (int)Session["Id"];
+				users_bets.fk_betting = (int)Session["BetId"];
+				db.Entry(users_bets).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

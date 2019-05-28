@@ -17,12 +17,6 @@
         <th>
             @Html.DisplayNameFor(model => model.won)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.betting.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.user.username)
-        </th>
         <th></th>
     </tr>
 
@@ -33,12 +27,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.won)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.betting.id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user.username)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

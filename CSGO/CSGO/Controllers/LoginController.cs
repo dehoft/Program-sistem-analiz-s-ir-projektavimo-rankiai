@@ -48,10 +48,7 @@ namespace CSGO.Controllers
 
 		public ActionResult LogOut()
 		{
-			Session.Remove("Id");
-			Session.Remove("userName");
-			Session.Remove("userLevel");
-			Session.Remove("registeredGiveaway");
+			Session.RemoveAll();
 			return RedirectToAction("Login","Login");
 		}
 
