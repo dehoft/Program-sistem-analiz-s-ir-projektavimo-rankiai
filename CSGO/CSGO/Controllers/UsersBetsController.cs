@@ -58,7 +58,7 @@ namespace CSGO.Controllers
 				Session.Remove("BetId");
 				db.users_bets.Add(users_bets);
                 db.SaveChanges();
-                return RedirectToAction("Index","Tournaments");
+                return RedirectToAction("Details","Matches");
             }
 
             ViewBag.fk_betting = new SelectList(db.bettings, "id", "id", users_bets.fk_betting);

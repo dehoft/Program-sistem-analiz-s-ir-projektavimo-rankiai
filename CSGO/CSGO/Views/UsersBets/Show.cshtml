@@ -29,7 +29,7 @@
 		<td>
 			@if (item.won == true)
 			{
-				@Html.ActionLink("Claim", "ClaimMoney")
+				@Html.ActionLink("Claim", "ClaimMoney", new { id = item.id })
 			}
 			else if (item.won == false)
 			{

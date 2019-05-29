@@ -81,7 +81,7 @@
 		if ((int)Session["userLevel"] == 2)
 		{
 			@Html.ActionLink("Edit ", "Edit", new { id = Model.id })
-			@Html.ActionLink("Skins", "Add", new { id = Model.id })
+			@Html.ActionLink("Add skins", "Add", new { id = Model.id })
 		}
 		else
 		{

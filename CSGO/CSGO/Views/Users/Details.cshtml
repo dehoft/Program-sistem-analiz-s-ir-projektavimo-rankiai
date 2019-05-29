@@ -82,7 +82,7 @@
 			@Html.DisplayFor(model => item.won)
 			@if (item.won == true)
 			{
-				@Html.ActionLink("Claim", "ClaimMoney")
+				@Html.ActionLink("Claim", "ClaimMoney", new { id = item.id })
 			}
 			else if(item.won==false)
 			{
@@ -101,7 +101,7 @@
 			@Html.DisplayFor(model => item.won)
 			@if (item.won == true)
 			{
-				@Html.ActionLink("Claim", "ClaimSkin")
+				@Html.ActionLink("Claim", "ClaimSkin", new { id = item.id })
 			}
 			else if(item.won==false)
 			{

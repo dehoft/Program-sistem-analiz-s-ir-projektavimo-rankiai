@@ -49,7 +49,7 @@ namespace CSGO.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,coefficient,fk_users_bets,fk_match")] betting betting)
+        public ActionResult Create([Bind(Include = "id,coefficient,fk_users_bets,fk_match,team_name")] betting betting)
         {
             if (ModelState.IsValid)
             {
